@@ -1,21 +1,7 @@
 {
-	"name": "ecctrl",
-	"version": "1.0.92",
-	"author": "Erdong Chen",
+	"name": "billet-all-eyes",
+	"version": "0.0.0",
 	"license": "MIT",
-	"description": "A floating rigibody character controller for R3F",
-	"keywords": [
-		"react",
-		"three",
-		"threejs",
-		"react-three-fiber",
-		"control",
-		"character-control"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/pmndrs/ecctrl.git"
-	},
 	"files": [
 		"dist/*",
 		"src/*"
