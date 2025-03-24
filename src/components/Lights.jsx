@@ -12,8 +12,10 @@ const Lights = (props, ref) => {
 
 	// useHelper(pointLightRef, THREE.PointLightHelper, 1);
 	useEffect(() => {
+		if (!spotLightRef.current || !spotLightTarget2.current) return;
+
 		spotLightRef.current.target = spotLightTarget2.current;
-	}, [spotLightRef.current]);
+	}, [spotLightRef.current, spotLightTarget2.current]);
 	return (
 		<>
 			<directionalLight position={[5, 0, 1]} intensity={1.5} target={ref.current} name="followLight" ref={directionalLightRef} />

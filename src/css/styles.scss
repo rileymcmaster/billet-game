@@ -50,8 +50,19 @@ h3 {
 	letter-spacing: 4px;
 	line-height: normal;
 	font-weight: 400;
-
 	color: $color-moss;
+}
+
+h3 {
+	margin-block-end: 32px;
+	a {
+		background: $color-blue;
+		color: $color-black;
+		transition: color 0.2s ease;
+		&:hover {
+			color: $color-white;
+		}
+	}
 }
 
 h1 {
@@ -75,6 +86,19 @@ h1.alt,
 h2 {
 	font-family: lemon;
 	margin-block-end: 20px;
+}
+
+.small-text {
+	font-size: 0.5rem;
+
+	a {
+		color: $color-moss;
+		&:hover,
+		&:focus-visible {
+			color: $color-blue;
+			background: transparent;
+		}
+	}
 }
 
 .link-wrapper {
@@ -220,10 +244,14 @@ iframe {
 
 	p {
 		max-width: 1000px;
+		z-index: 1;
 	}
 	p + p {
 		font-size: 0.6rem;
 		margin-block-start: 0.8rem;
+	}
+	p.small-text {
+		margin-block-start: 64px;
 	}
 }
 

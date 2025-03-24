@@ -13,9 +13,10 @@ const DollLights = () => {
 	const spotlightColor = useMemo(() => new THREE.Color(colorValue));
 
 	useEffect(() => {
+		if (!spotlight1.current || !target.current) return;
 		spotlight1.current.target = target.current;
 		spotlight2.current.target = target.current;
-	}, [target.current]);
+	}, [target.current, spotlight1.current]);
 
 	let scaleRatioTally = 0;
 	useFrame(({ camera }) => {

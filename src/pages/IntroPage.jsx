@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 import { AnimatePresence, motion } from "motion/react";
 import { useMediaQuery } from "react-responsive";
-import { links } from "../data";
 import Overlay from "../components/Overlay";
 import Menu from "../components/Menu";
 
@@ -89,6 +88,9 @@ const IntroPage = () => {
 										without sound
 									</button>
 								</div>
+								<p className="small-text">
+									<a href="mailto:billetmusic@gmail.com">billetmusic@gmail.com</a> <br /> 2025
+								</p>
 							</div>
 						</motion.div>
 					)}
