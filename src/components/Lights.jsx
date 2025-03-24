@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect } from "react";
 import { useHelper } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
+
 const Lights = (props, ref) => {
 	const directionalLightRef = useRef();
 	const pointLightRef = useRef();
@@ -15,22 +16,7 @@ const Lights = (props, ref) => {
 	}, [spotLightRef.current]);
 	return (
 		<>
-			<directionalLight
-				// castShadow
-				// shadow-normalBias={0.06}
-				position={[5, 0, 1]}
-				intensity={1.5}
-				// shadow-mapSize={[1024, 1024]}
-				// shadow-camera-near={1}
-				// shadow-camera-far={50}
-				// shadow-camera-top={50}
-				// shadow-camera-right={50}
-				// shadow-camera-bottom={-50}
-				// shadow-camera-left={-50}
-				target={ref.current}
-				name="followLight"
-				ref={directionalLightRef}
-			/>
+			<directionalLight position={[5, 0, 1]} intensity={1.5} target={ref.current} name="followLight" ref={directionalLightRef} />
 
 			<pointLight position={[0, 5, -5]} intensity={5} name="lamp" />
 			<pointLight position={[0, 5, 2]} intensity={10} name="lamp" />
