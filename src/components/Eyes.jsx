@@ -2,7 +2,7 @@ import { useVideoTexture } from "@react-three/drei";
 import React from "react";
 import * as THREE from "three";
 
-const videoURL = "./eyes.mp4";
+const videoURL = "./assets/eyes.mp4";
 
 const Eyes = () => {
 	const texture = useVideoTexture(videoURL);

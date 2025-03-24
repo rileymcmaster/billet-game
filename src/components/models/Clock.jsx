@@ -4,9 +4,11 @@ Command: npx gltfjsx@6.5.3 /Users/rileymcmaster/Documents/Personal/Web/Debris/Sc
 Files: /Users/rileymcmaster/Documents/Personal/Web/Debris/Scan/Clock/clock1_hands.glb [929.27KB] > /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/clock1_hands-transformed.glb [106.66KB] (89%)
 */
 
-import React, { forwardRef, useRef } from "react";
+import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+
+const src = "/assets/models/clock1_hands_5.glb";
 
 const Clock = (props) => {
 	const group = useRef();
@@ -14,7 +16,7 @@ const Clock = (props) => {
 	const minuteHand = useRef();
 	const secondHand = useRef();
 
-	const { nodes, materials } = useGLTF("/clock1_hands_5.glb");
+	const { nodes, materials } = useGLTF(src);
 
 	useFrame(({ camera }, delta) => {
 		if (group.current) {
@@ -37,5 +39,5 @@ const Clock = (props) => {
 	);
 };
 
-useGLTF.preload("/clock1_hands_5.glb");
+useGLTF.preload(src);
 export default Clock;

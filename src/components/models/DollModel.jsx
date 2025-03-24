@@ -4,21 +4,22 @@ Command: npx gltfjsx@6.5.3 /Users/rileymcmaster/Documents/Personal/Web/Debris/Sc
 Files: /Users/rileymcmaster/Documents/Personal/Web/Debris/Scan/Oz/oz_4.glb [20.29MB] > /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/oz_4-transformed.glb [568.8KB] (97%)
 */
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFrame, useGraph } from "@react-three/fiber";
-import { useGLTF, useAnimations, useCursor } from "@react-three/drei";
+import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import * as THREE from "three";
 import { calculateFloat } from "../../helpers/mathHelper";
-import AppContext from "../../context/AppContext";
 import ClickTarget from "../ClickTarget";
+
+const src = "/assets/models/oz_4_2-transformed.glb";
 
 const DollModel = (props) => {
 	const [clickable, setClickable] = useState(false);
 	const group = useRef();
 	const skinMesh = useRef();
 
-	const { scene, animations } = useGLTF("/oz_4_2-transformed.glb");
+	const { scene, animations } = useGLTF(src);
 	const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
 	const { nodes, materials } = useGraph(clone);
 	const { actions, mixer } = useAnimations(animations, group);
@@ -80,4 +81,4 @@ const DollModel = (props) => {
 };
 
 export default DollModel;
-useGLTF.preload("/oz_4_2-transformed.glb");
+useGLTF.preload(src);

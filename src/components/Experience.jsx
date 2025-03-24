@@ -1,7 +1,7 @@
 import { KeyboardControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { Physics } from "@react-three/rapier";
-import Ecctrl, { EcctrlAnimation } from "../../ecctrl/Ecctrl";
+import Ecctrl, { EcctrlAnimation } from "../ecctrl/Ecctrl";
 import Floor from "./Floor";
 import Lights from "./Lights";
 import React, { useContext, useRef } from "react";
@@ -41,7 +41,7 @@ const animationSet = {
 export default function Experience() {
 	const character = useRef(null);
 
-	const characterURL = "/jrm_3_mixrig_7-transformed.glb";
+	const characterURL = "/assets/models/jrm_3_mixrig_7-transformed.glb";
 
 	const {
 		data: { allowSound },

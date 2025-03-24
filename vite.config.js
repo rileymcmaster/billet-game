@@ -2,18 +2,35 @@ import { defineConfig } from "vite";
 import * as path from "node:path";
 import react from "@vitejs/plugin-react";
 
-// const isCodeSandbox = "SANDBOX_URL" in process.env || "CODESANDBOX_HOST" in process.env;
+// export default defineConfig({
+// 	plugins: [react()],
+// 	root: "src/",
+// 	publicDir: "../public/",
+// 	base: "./",
+// });
 
-export default defineConfig({
+const dev = defineConfig({
 	plugins: [react()],
-	root: "src/",
-	publicDir: "../public/",
+	root: "./",
+	publicDir: "/public/",
 	base: "./",
+	server: {
+		host: true,
+		open: true, // Open if it's not a CodeSandbox
+	},
+});
+
+const build = defineConfig({
+	publicDir: true,
 	build: {
-		minify: false,
+		minify: true,
 		sourcemap: true,
 		target: "es2018",
-
+		lib: {
+			formats: ["cjs", "es"],
+			entry: "src/index.jsx",
+			fileName: "[name]",
+		},
 		rollupOptions: {
 			external: (id) => !id.startsWith(".") && !path.isAbsolute(id),
 			output: {
@@ -22,3 +39,5 @@ export default defineConfig({
 		},
 	},
 });
+
+export default process.argv[2] ? build : dev;

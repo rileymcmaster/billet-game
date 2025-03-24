@@ -7,14 +7,6 @@
 		"src/*"
 	],
 	"type": "module",
-	"types": "./dist/Ecctrl.d.ts",
-	"main": "./dist/Ecctrl.cjs",
-	"module": "./dist/Ecctrl.js",
-	"exports": {
-		"types": "./dist/Ecctrl.d.ts",
-		"require": "./dist/Ecctrl.cjs",
-		"import": "./dist/Ecctrl.js"
-	},
 	"sideEffects": false,
 	"devDependencies": {
 		"@react-three/drei": "^9.117.3",
@@ -30,7 +22,6 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"@r3f-cutter/r3f-cutter": "^1.0.8",
 		"@react-spring/three": "^9.7.5",
 		"@react-three/postprocessing": "^2",
 		"@types/three": "^0.170.0",
@@ -46,7 +37,7 @@
 	},
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build && tsc",
+		"build": "vite build",
 		"preview": "vite preview"
 	}
 }

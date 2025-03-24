@@ -10,13 +10,13 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 
 const defaultPos = [0, -1, 0];
+const src = "/assets/models/jrm_3_mixrig_7-transformed.glb";
 
 const Character_JRM = (props, refFwd) => {
 	const { animation = null, position = defaultPos, scale = 0.75, rotate = 0, ...rest } = props;
-	// const group = React.useRef();
 	const characterRef = refFwd ? refFwd : useRef(null);
 
-	const { scene, animations } = useGLTF("/jrm_3_mixrig_7-transformed.glb");
+	const { scene, animations } = useGLTF(src);
 	const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
 	const { nodes, materials } = useGraph(clone);
 	const { ref, actions, names } = useAnimations(animations);
@@ -50,4 +50,4 @@ const Character_JRM = (props, refFwd) => {
 
 export default forwardRef(Character_JRM);
 
-useGLTF.preload("/jrm_3_mixrig_7-transformed.glb");
+useGLTF.preload(src);

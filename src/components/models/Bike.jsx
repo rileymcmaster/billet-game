@@ -7,9 +7,10 @@ Files: /Users/rileymcmaster/Documents/Personal/Web/Debris/Scan/basement/export/b
 import React, { useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
+const src = "/assets/models/basement_3_bike_2-transformed.glb";
 const Bike = (props) => {
 	const group = React.useRef();
-	const { nodes, materials, animations } = useGLTF("/basement_3_bike_2-transformed.glb");
+	const { nodes, materials, animations } = useGLTF(src);
 	const { actions, mixer } = useAnimations(animations, group);
 
 	useEffect(() => {
@@ -24,5 +25,5 @@ const Bike = (props) => {
 	);
 };
 
-useGLTF.preload("/basement_3_bike_2-transformed.glb");
+useGLTF.preload(src);
 export default Bike;

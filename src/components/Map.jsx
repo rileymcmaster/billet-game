@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Bike from "./models/Bike";
 import * as THREE from "three";
 
-const mapURL = "/basement_2_6.glb";
+const mapURL = "/assets/models/basement_2_6.glb";
 
 const Map = (props) => {
 	const { nodes } = useGLTF(mapURL);

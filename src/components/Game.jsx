@@ -1,7 +1,7 @@
 import { Leva } from "leva";
 import { Canvas } from "@react-three/fiber";
 
-import { EcctrlJoystick } from "../../ecctrl/EcctrlJoystick";
+import { EcctrlJoystick } from "../ecctrl/EcctrlJoystick";
 import React, { Suspense, useContext, useEffect, useState } from "react";
 import Experience from "./Experience";
 import IntroPage from "../pages/IntroPage";

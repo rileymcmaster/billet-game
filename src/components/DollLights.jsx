@@ -7,7 +7,10 @@ const DollLights = () => {
 	const target = useRef();
 	const spotlight1 = useRef();
 	const spotlight2 = useRef();
-	const spotlightColor = useMemo(() => new THREE.Color("0xff0000"));
+	const color = "#d7e4e8";
+	const colorValue = parseInt(color.replace("#", "0x"), 16);
+
+	const spotlightColor = useMemo(() => new THREE.Color(colorValue));
 
 	useEffect(() => {
 		spotlight1.current.target = target.current;
@@ -22,10 +25,6 @@ const DollLights = () => {
 		}
 
 		if (scaleRatioMax >= 0) {
-			// group.current.scale.x = THREE.MathUtils.damp(group.current.scale.x, scaleRatioTally / 2 + 4, 5, 0.5);
-			// group.current.scale.y = THREE.MathUtils.damp(group.current.scale.y, scaleRatioTally / 2 + 4, 5, 0.5);
-			// group.current.scale.z = THREE.MathUtils.damp(group.current.scale.z, scaleRatioTally / 2 + 4, 5, 0.5);
-			// group.current.position.y = THREE.MathUtils.damp(group.current.position.y, spinRatioTally * 1 - 2.5, 0.001, 5);
 			target.current.position.z = THREE.MathUtils.lerp(target.current.position.z, 24, 0.005);
 			target.current.position.y = THREE.MathUtils.lerp(target.current.position.y, 4, 0.005);
 			spotlight1.current.intensity = THREE.MathUtils.lerp(spotlight1.current.intensity, 100, 0.001);
