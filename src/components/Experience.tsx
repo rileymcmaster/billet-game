@@ -15,7 +15,6 @@ import DollModel from "./models/DollModel";
 import DollLights from "./DollLights";
 
 import Clock from "./models/Clock";
-import ClickTarget from "./ClickTarget";
 
 const keyboardMap = [
 	{ name: "forward", keys: ["ArrowUp", "KeyW"] },
