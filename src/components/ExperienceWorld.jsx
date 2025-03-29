@@ -48,29 +48,29 @@ const ExperienceWorld = () => {
 		actions: { handleEnd },
 	} = useContext(AppContext);
 
-	useEffect(() => {
-		if (!ecctrlRef.current) return;
-		if (isEnd) {
-			console.log("should call rot cam");
-			ecctrlRef.current.disableFollowCam = true;
-			ecctrlRef.current.rotateCamera(-0.125, 0);
-		} else if (isEnd === false) {
-			ecctrlRef.current.disableFollowCam = false;
-			ecctrlRef.current.rotateCamera(0.125, 0);
-		}
-	}, [isEnd]);
+	// useEffect(() => {
+	// 	if (!ecctrlRef.current) return;
+	// 	if (isEnd) {
+	// 		console.log("should call rot cam");
+	// 		ecctrlRef.current.disableFollowCam = true;
+	// 		ecctrlRef.current.rotateCamera(-0.125, 0);
+	// 	} else if (isEnd === false) {
+	// 		ecctrlRef.current.disableFollowCam = false;
+	// 		ecctrlRef.current.rotateCamera(0.125, 0);
+	// 	}
+	// }, [isEnd]);
 
-	useFrame(() => {
-		if (!ecctrlRef.current) return;
-		const { z } = ecctrlRef.current.translation();
-		const isLocalEnd = z > 22;
+	// useFrame(() => {
+	// 	if (!ecctrlRef.current) return;
+	// 	const { z } = ecctrlRef.current.translation();
+	// 	const isLocalEnd = z > 22;
 
-		if (isLocalEnd) {
-			handleEnd(true);
-		} else if (isEnd && !isLocalEnd) {
-			handleEnd(false);
-		}
-	});
+	// 	if (isLocalEnd) {
+	// 		handleEnd(true);
+	// 	} else if (isEnd && !isLocalEnd) {
+	// 		handleEnd(false);
+	// 	}
+	// });
 	return (
 		<>
 			<ClickTarget position={[0, 4, 24]} />
