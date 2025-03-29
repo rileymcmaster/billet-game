@@ -47,27 +47,27 @@ const DollModel = ({ handleEnd, ...props }) => {
 
 		const { ratio: spinRatio, ratioMax: spinRatioMax } = calculateFloat({ start: 10, end: 14, value: camera.position.z });
 		if (spinRatioMax >= 0 && spinRatioTally < spinRatioMax) {
-			// spinRatioTally = spinRatioMax;
+			spinRatioTally = spinRatioMax;
 		}
 		if (spinRatioTally >= 0) {
-			// group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, (-spinRatioTally * Math.PI) / 8, 0.1, 0.5);
-			// group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, spinRatioTally * Math.PI, 0.5, 0.01);
+			group.current.rotation.x = THREE.MathUtils.damp(group.current.rotation.x, (-spinRatioTally * Math.PI) / 8, 0.1, 0.5);
+			group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, spinRatioTally * Math.PI, 0.5, 0.01);
 		}
 
 		const { ratio: scaleRatio, ratioMax: scaleRatioMax } = calculateFloat({ start: 12, end: 16, value: camera.position.z });
 		if (scaleRatioMax >= 0 && scaleRatioTally < scaleRatioMax) {
-			// scaleRatioTally = scaleRatioMax;
+			scaleRatioTally = scaleRatioMax;
 		}
 
 		if (scaleRatioMax >= 0) {
-			// group.current.scale.x = THREE.MathUtils.damp(group.current.scale.x, scaleRatioTally / 2 + 4, 5, 0.5);
-			// group.current.scale.y = THREE.MathUtils.damp(group.current.scale.y, scaleRatioTally / 2 + 4, 5, 0.5);
-			// group.current.scale.z = THREE.MathUtils.damp(group.current.scale.z, scaleRatioTally / 2 + 4, 5, 0.5);
-			// group.current.position.y = THREE.MathUtils.damp(group.current.position.y, spinRatioTally * 1 - 2.5, 0.001, 5);
+			group.current.scale.x = THREE.MathUtils.damp(group.current.scale.x, scaleRatioTally / 2 + 4, 5, 0.5);
+			group.current.scale.y = THREE.MathUtils.damp(group.current.scale.y, scaleRatioTally / 2 + 4, 5, 0.5);
+			group.current.scale.z = THREE.MathUtils.damp(group.current.scale.z, scaleRatioTally / 2 + 4, 5, 0.5);
+			group.current.position.y = THREE.MathUtils.damp(group.current.position.y, spinRatioTally * 1 - 2.5, 0.001, 5);
 		}
 
 		if (isAtEnd && actions["uncross arms"].paused == true) {
-			// actions["uncross arms"].paused = false;
+			actions["uncross arms"].paused = false;
 		}
 	});
 

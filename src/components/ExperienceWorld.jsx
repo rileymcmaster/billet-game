@@ -35,10 +35,7 @@ const characterURL = "/assets/models/jrm_3_mixrig_7-transformed.glb";
 
 const ExperienceWorld = ({ isEnd }) => {
 	const ref = useRef(null);
-
-	// const target = useRef();
 	const mapRef = useRef();
-	const [disableFollow, setDisableFollow] = useState(false);
 	let capsuleHeight = 0.7;
 	let capsuleRadius = 0.3;
 
@@ -48,51 +45,51 @@ const ExperienceWorld = ({ isEnd }) => {
 
 	return (
 		<>
-			<Physics debug={false} timeStep={1 / 60}>
-				{/* <Map ref={mapRef} /> */}
+			<Physics debug={false} timeStep={"vary"}>
+				<Map ref={mapRef} />
 
-				{/* {mapRef.current && ( */}
-				<>
-					<KeyboardControls map={keyboardMap}>
-						<Ecctrl
-							// debug
-							animated
-							followLight
-							springK={2}
-							dampingC={0.2}
-							maxVelLimit={0.81}
-							turnVelMultiplier={0.09}
-							sprintMult={2.9}
-							jumpVel={4.5}
-							jumpForceToGroundMult={42}
-							slopJumpMult={0.25}
-							sprintJumpMult={1.3}
-							disableControl={false}
-							disableFollowCam={isEnd}
-							camCollision={true}
-							camInitDis={-2}
-							camMinDis={-1}
-							camFollowMult={1000}
-							camLerpMult={1000}
-							turnSpeed={5}
-							friction={20}
-							gravityScale={1.2}
-							floatingDis={0.4}
-							floatHeight={capsuleHeight + 0.5} // Height of the character when floating
-							capsuleHalfHeight={capsuleHeight / 2} // Half-height of the character capsule
-							capsuleRadius={capsuleRadius} // Radius of the character capsule
-							bodySensorSize={[capsuleHeight / 4 - 3, capsuleRadius]}
-							bodySensorPosition={{ x: 0, y: 2, z: capsuleRadius / 2 }}
-							characterInitDir={Math.PI}
-							mode="FixedCamera">
-							<EcctrlAnimation characterURL={characterURL} animationSet={animationSet}>
-								<Character_JRM ref={ref} />
-							</EcctrlAnimation>
-						</Ecctrl>
-					</KeyboardControls>
-					<Lights ref={ref} />
-				</>
-				{/* )} */}
+				{mapRef.current && (
+					<>
+						<KeyboardControls map={keyboardMap}>
+							<Ecctrl
+								// debug
+								animated
+								followLight
+								springK={2}
+								dampingC={0.2}
+								maxVelLimit={0.81}
+								turnVelMultiplier={0.09}
+								sprintMult={2.9}
+								jumpVel={4.5}
+								jumpForceToGroundMult={42}
+								slopJumpMult={0.25}
+								sprintJumpMult={1.3}
+								disableControl={false}
+								// disableFollowCam={isEnd}
+								camCollision={true}
+								camInitDis={-2}
+								camMinDis={-1}
+								camFollowMult={1000}
+								camLerpMult={1000}
+								turnSpeed={5}
+								friction={20}
+								gravityScale={1.2}
+								floatingDis={0.4}
+								floatHeight={capsuleHeight + 0.5} // Height of the character when floating
+								capsuleHalfHeight={capsuleHeight / 2} // Half-height of the character capsule
+								capsuleRadius={capsuleRadius} // Radius of the character capsule
+								bodySensorSize={[capsuleHeight / 4 - 3, capsuleRadius]}
+								bodySensorPosition={{ x: 0, y: 2, z: capsuleRadius / 2 }}
+								characterInitDir={Math.PI}
+								mode="FixedCamera">
+								<EcctrlAnimation characterURL={characterURL} animationSet={animationSet}>
+									<Character_JRM ref={ref} />
+								</EcctrlAnimation>
+							</Ecctrl>
+						</KeyboardControls>
+						<Lights ref={ref} />
+					</>
+				)}
 
 				{/* <mesh ref={target} scale={0.5} position={[0, 5, 23]}>
 				<boxGeometry args={[1, 1, 1]} />

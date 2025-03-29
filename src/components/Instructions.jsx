@@ -1,7 +1,6 @@
 import { Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { Suspense, useContext, useEffect, useRef } from "react";
-import { calculateFloat } from "../helpers/mathHelper";
+import React, { Suspense, useContext, useRef } from "react";
 import { lerp } from "three/src/math/MathUtils.js";
 import AppContext from "../context/AppContext";
 

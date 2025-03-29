@@ -20,7 +20,7 @@ const EcctrlJoystickControls = (props) => {
 			setIsTouchScreen(false);
 		}
 	}, []);
-	return <>{isTouchScreen && <EcctrlJoystick buttonNumber={1} />}</>;
+	return <>{isTouchScreen && <EcctrlJoystick joystickRunSensitivity={0.2} buttonNumber={1} />}</>;
 };
 
 const Game = () => {
