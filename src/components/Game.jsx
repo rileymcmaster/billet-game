@@ -35,9 +35,9 @@ const Game = () => {
 				style={{ width: "100%", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
 				// shadows
 				camera={{
-					fov: 85,
+					fov: 75,
 					near: 0.1,
-					far: 1000,
+					far: 30,
 				}}>
 				<Suspense fallback={null}>
 					<Experience />

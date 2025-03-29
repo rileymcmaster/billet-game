@@ -54,7 +54,7 @@ export default function Experience() {
 	return (
 		<>
 			<Perf position="top-left" />
-			<fog attach="fog" color="black" near={1} far={35} />
+			<fog attach="fog" color="black" near={1} far={15} />
 
 			<Lights ref={character} />
 			{/* <Eyes /> */}

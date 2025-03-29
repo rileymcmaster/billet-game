@@ -19,7 +19,7 @@ const Instructions = () => {
 			text1.current.fillOpacity = lerp(text1.current.fillOpacity, 1 - ratioMax, 0.05);
 		}
 
-		if (ratio >= 1) {
+		if (ratioTally >= 1) {
 			text1.current.fillOpacity = lerp(text1.current.fillOpacity, 0, 0.05);
 			text2.current.fillOpacity = lerp(text2.current.fillOpacity, 0, 0.05);
 			return;

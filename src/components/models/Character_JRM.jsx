@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.5.3 /Users/rileymcmaster/Projects/Personal/threejs/ecctrl
 Files: /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/public/jrm_3_mixrig_7.glb [30.03MB] > /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/jrm_3_mixrig_7-transformed.glb [1.64MB] (95%)
 */
 
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, Suspense, useEffect, useRef } from "react";
 import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
@@ -36,21 +36,23 @@ const Character_JRM = (props, refFwd) => {
 		return () => actions[animation].fadeOut(0.5);
 	}, [actions, names]);
 	return (
-		<group ref={ref} {...rest} dispose={null}>
-			<group ref={characterRef} name="Scene" scale={scale} position={position} rotation-y={rotate}>
-				<skinnedMesh
-					receiveShadow
-					castShadow
-					name="jrm-mesh"
-					geometry={nodes["jrm-mesh"].geometry}
-					material={materials["jrm lo.001"]}
-					skeleton={nodes["jrm-mesh"].skeleton}
-					rotation={[Math.PI / 2, 0, 0]}
-					scale={0.01}
-				/>
-				<primitive object={nodes.jrm} />
+		<Suspense fallback={null}>
+			<group ref={ref} {...rest} dispose={null}>
+				<group ref={characterRef} name="Scene" scale={scale} position={position} rotation-y={rotate}>
+					<skinnedMesh
+						receiveShadow
+						castShadow
+						name="jrm-mesh"
+						geometry={nodes["jrm-mesh"].geometry}
+						material={materials["jrm lo.001"]}
+						skeleton={nodes["jrm-mesh"].skeleton}
+						rotation={[Math.PI / 2, 0, 0]}
+						scale={0.01}
+					/>
+					<primitive object={nodes.jrm} />
+				</group>
 			</group>
-		</group>
+		</Suspense>
 	);
 };
 
