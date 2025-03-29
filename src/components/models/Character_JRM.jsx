@@ -8,8 +8,10 @@ import React, { forwardRef, useEffect, useRef } from "react";
 import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
+import { AdditiveAnimationBlendMode } from "three";
 
-const defaultPos = [0, -1, 0];
+// const defaultPos = [0, -1, 0];
+const defaultPos = [0, -0.7, 0];
 const src = "/assets/models/jrm_3_mixrig_7-transformed.glb";
 
 const Character_JRM = (props, refFwd) => {
@@ -19,12 +21,16 @@ const Character_JRM = (props, refFwd) => {
 	const { scene, animations } = useGLTF(src);
 	const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
 	const { nodes, materials } = useGraph(clone);
-	const { ref, actions, names } = useAnimations(animations);
+	const { ref, actions, names, mixer } = useAnimations(animations);
 
 	useEffect(() => {
+		// set up some defaults for jump and jumpland
+		actions["jump joy"].blendMode = AdditiveAnimationBlendMode;
+		actions["jump joy"].crossFadeTo(actions["jump_land"], 0.05, false);
+		actions["jump_land"].blendMode = AdditiveAnimationBlendMode;
+
 		const isValid = names.some((name) => animation === name);
 		if (!animation || !isValid) return;
-
 		actions[animation].reset().fadeIn(0.5).play();
 
 		return () => actions[animation].fadeOut(0.5);

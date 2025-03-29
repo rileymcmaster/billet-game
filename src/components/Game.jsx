@@ -1,5 +1,6 @@
 import { Leva } from "leva";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
+import * as THREE from "three";
 
 import { EcctrlJoystick } from "../ecctrl/EcctrlJoystick";
 import React, { Suspense, useContext, useEffect, useState } from "react";
@@ -8,8 +9,9 @@ import IntroPage from "../pages/IntroPage";
 import AppContext from "../context/AppContext";
 import Modal from "../pages/Modal";
 
-const EcctrlJoystickControls = () => {
+const EcctrlJoystickControls = (props) => {
 	const [isTouchScreen, setIsTouchScreen] = useState(false);
+
 	useEffect(() => {
 		// Check if using a touch control device, show/hide joystick
 		if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
@@ -30,6 +32,8 @@ const Game = () => {
 			{/* <Leva collapsed /> */}
 			{start && <EcctrlJoystickControls />}
 			<Canvas
+				style={{ width: "100%", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
+				// shadows
 				camera={{
 					fov: 85,
 					near: 0.1,

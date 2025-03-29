@@ -7,19 +7,18 @@ Files: /Users/rileymcmaster/Documents/Personal/Web/Debris/Scan/basement/export/b
 import React, { useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-const src = "/assets/models/basement_3_bike_2-transformed.glb";
+const src = "/assets/models/basement_3_bike_3-transformed.glb";
 const Bike = (props) => {
 	const group = React.useRef();
 	const { nodes, materials, animations } = useGLTF(src);
-	const { actions, mixer } = useAnimations(animations, group);
+	const { actions } = useAnimations(animations, group);
 
 	useEffect(() => {
-		actions["ride-by"].timeScale = 0.8;
 		actions["ride-by"].reset().fadeIn(0.5).play();
 	}, [group.current]);
 
 	return (
-		<group ref={group} {...props} dispose={null}>
+		<group ref={group} {...props} dispose={null} scale={3} position={[0, -0.9, 8]}>
 			<mesh name="bike" geometry={nodes.bike.geometry} material={materials["Material_0.007"]} position={[2.331, 0, 0]} rotation={[-Math.PI, 0.016, -Math.PI]} scale={0.9}></mesh>
 		</group>
 	);
