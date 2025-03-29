@@ -33,11 +33,10 @@ const Game = () => {
 			{start && <EcctrlJoystickControls />}
 			<Canvas
 				style={{ width: "100%", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
-				// shadows
 				camera={{
 					fov: 75,
 					near: 0.1,
-					far: 30,
+					far: 35,
 				}}>
 				<Suspense fallback={null}>
 					<Experience />

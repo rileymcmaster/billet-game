@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef, Suspense, useEffect } from "react";
 import { useHelper } from "@react-three/drei";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -9,15 +9,15 @@ const Lights = (props, ref) => {
 	const ambientLightRef = useRef();
 	const spotLightRef = useRef();
 	const spotLightTarget2 = useRef();
-
 	// useHelper(pointLightRef, THREE.PointLightHelper, 1);
+
 	useEffect(() => {
 		if (!spotLightRef.current || !spotLightTarget2.current) return;
 
 		spotLightRef.current.target = spotLightTarget2.current;
 	}, [spotLightRef.current, spotLightTarget2.current]);
 	return (
-		<>
+		<Suspense fallback={null}>
 			<directionalLight position={[5, 0, 1]} intensity={1.5} target={ref.current} name="followLight" ref={directionalLightRef} />
 
 			<pointLight position={[0, 5, -5]} intensity={5} name="lamp" />
@@ -34,7 +34,7 @@ const Lights = (props, ref) => {
 			</mesh>
 
 			<ambientLight ref={ambientLightRef} intensity={1} color={"#b1a593"} />
-		</>
+		</Suspense>
 	);
 };
 

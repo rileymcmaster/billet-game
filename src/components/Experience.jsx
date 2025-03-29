@@ -42,7 +42,7 @@ import ExperienceWorld from "./ExperienceWorld";
 // };
 
 export default function Experience() {
-	const character = useRef(null);
+	// const character = useRef(null);
 	const [isEnd, setIsEnd] = useState(false);
 
 	// const characterURL = "/assets/models/jrm_3_mixrig_7-transformed.glb";
@@ -54,9 +54,8 @@ export default function Experience() {
 	return (
 		<>
 			<Perf position="top-left" />
-			<fog attach="fog" color="black" near={1} far={15} />
+			<fog attach="fog" color="black" near={1} far={20} />
 
-			<Lights ref={character} />
 			{/* <Eyes /> */}
 			{/* <Clock /> */}
 			<Bike />
@@ -66,9 +65,10 @@ export default function Experience() {
 			<Character_JRM scale={0.5} position={[3.8, 2.12, 17]} rotate={-Math.PI / 2} animation="dance slide" /> */}
 			<DollModel handleEnd={() => setIsEnd(true)} />
 			{/* <DollLights /> */}
-			<ExperienceWorld ref={character} isEnd={isEnd} />
+			<ExperienceWorld isEnd={isEnd} />
+			{/* <Lights ref={character} /> */}
 
-			{allowSound && <Sounds character={character} />}
+			{/* {allowSound && <Sounds character={character} />} */}
 		</>
 	);
 }

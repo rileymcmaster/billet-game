@@ -6,8 +6,9 @@ const roomURL = "/assets/models/basement_3_room_1-transformed.glb";
 const ceilingURL = "/assets/models/basement_3_ceiling_1-transformed.glb";
 
 const Map = (props, ref) => {
-	const { nodes: roomNodes } = useGLTF(roomURL);
-	const { nodes: ceilingNodes, materials: ceilingMaterials } = useGLTF(ceilingURL);
+	// const { nodes: roomNodes } = useGLTF(roomURL);
+	// const { nodes: ceilingNodes, materials: ceilingMaterials } = useGLTF(ceilingURL);
+	const [{ nodes: roomNodes }, { nodes: ceilingNodes, materials: ceilingMaterials }] = useGLTF([roomURL, ceilingURL]);
 	const basement = roomNodes["basement_room001"];
 
 	const handleClick = (e) => {
@@ -30,7 +31,7 @@ const Map = (props, ref) => {
 		</Suspense>
 	);
 };
-useGLTF.preload(roomURL);
-useGLTF.preload(ceilingURL);
+useGLTF.preload([roomURL, ceilingURL]);
+// useGLTF.preload(ceilingURL);
 
 export default forwardRef(Map);
