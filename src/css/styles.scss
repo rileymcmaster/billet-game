@@ -13,6 +13,7 @@ $max-content-width: 1420px;
 
 $color-blue: #459db0;
 $color-black: #242424;
+$color-black-bg: #101010;
 $color-moss: #bacabb;
 $color-white: #d7dce1;
 
@@ -22,7 +23,7 @@ $color-white: #d7dce1;
 	font-weight: 400;
 
 	color: $color-moss;
-	background-color: $color-black;
+	background-color: $color-black-bg;
 	font-size: calc(20px + 6 * ((100vw - 320px) / 680));
 
 	font-synthesis: none;

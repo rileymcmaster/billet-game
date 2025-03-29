@@ -31,7 +31,6 @@ const DollLights = () => {
 
 	let scaleRatioTally = 0;
 	useFrame(({ camera }, delta) => {
-		// console.log({ camera: camera.position });
 		// camera.position.lerp(0, Math.sin(camera.position.y), camera.position.z, 0.005);
 		const { ratio: scaleRatio, ratioMax: scaleRatioMax } = calculateFloat({ start: 14, end: 18, value: camera.position.z });
 		if (scaleRatioMax >= 0 && scaleRatioTally < scaleRatioMax) {
@@ -39,28 +38,9 @@ const DollLights = () => {
 		}
 		// console.log({ vec, camera, y: vec.y });
 		if (scaleRatioMax >= 0) {
-			// easing.damp3(camera.position, [target.current.position.x, target.current.position.y, -target.current.position.z], 0.3, delta);
-			// camera.lookAt(camera.position);
-			// camera.updateProjectionMatrix();
-			// target.current.position.z = THREE.MathUtils.lerp(target.current.position.z, 24, 0.005);
-			// target.current.position.y = THREE.MathUtils.lerp(target.current.position.y, 4, 0.005);
-			// spotlight1.current.intensity = THREE.MathUtils.lerp(spotlight1.current.intensity, 100, 0.001);
-			// spotlight2.current.intensity = THREE.MathUtils.lerp(spotlight2.current.intensity, 100, 0.001);
 			pointLight1.current.intensity = THREE.MathUtils.lerp(pointLight1.current.intensity, scaleRatioMax * 18, 0.001);
-			// console.log("camera pos", camera.position);
-			// camera.position.lerp(vec.set(camera.position.x, camera.position.y - 4, camera.position.z), 0.05);
-			// camera.position.lerp(target.current.position, 0.05);
-			// camera.getWorldPosition();
-			// camera.getWorldDirection(vec);
-
-			// camera.rotateOnWorldAxis()
-			// vec.z = THREE.MathUtils.lerp(vec.z, target.current.position.z, 0.05);
-			// camera.lookAt(0, 0, target.current.position.z);
-			// dampLookAt(camera, [0, target.current.y, target.current.z], 0.25, delta);
-			//   followCam.getWorldPosition(followCamPosition);
-			// 	state.camera.position.lerp(followCamPosition, 1 - Math.exp(-camLerpMult * delta));
-			// easing.dampLookAt(camera.position, target.current.position, 0.5, delta);
 		}
+
 		return null;
 	});
 	return (
@@ -70,7 +50,7 @@ const DollLights = () => {
 			<pointLight position={[0, 3.3, 23]} intensity={0} ref={pointLight1} name="lamp" />
 			{/* a target for the lights to look at */}
 			{/* <mesh ref={target} scale={0.5} position={[0, 10, 40]}> */}
-			<mesh ref={target} scale={0.5} position={[0, 5, 23]}>
+			<mesh ref={target} scale={0.5} position={[0, 3.5, 23]}>
 				<boxGeometry args={[1, 1, 1]} />
 				<meshNormalMaterial transparent={true} opacity={0} />
 			</mesh>

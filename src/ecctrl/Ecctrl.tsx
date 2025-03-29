@@ -870,11 +870,21 @@ const Ecctrl: ForwardRefRenderFunction<CustomEcctrlRigidBody, EcctrlProps> = ({
    * Rotate camera function
    */
   const rotateCamera = (x: number, y: number) => {
-    pivot.rotation.y += y;
-    followCam.rotation.x = Math.min(
-      Math.max(followCam.rotation.x + x, camLowLimit),
-      camUpLimit
-    );
+    // pivot.rotation.y += y;
+    // followCam.rotation.x = Math.min(
+    //   Math.max(followCam.rotation.x + x, camLowLimit),
+    //   camUpLimit
+    // );
+    
+    // pivot.rotation.x += x;
+    console.log('rot cam', x)
+    
+    pivot.rotation.x = THREE.MathUtils.lerp(pivot.rotation.x, (pivot.rotation.x + x), 5);
+    // followCam.rotation.x = Math.min(
+    //   Math.max(followCam.rotation.x + x, camLowLimit),
+    //   camUpLimit
+    // );
+
   };
 
   /**

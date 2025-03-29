@@ -9,7 +9,7 @@ const Instructions = () => {
 	const text2 = useRef();
 	const groupRef = useRef();
 	const font = "/assets/Doner-RegularDisplay.otf";
-	const fontProps = { font, color: "#bacabb", fillOpacity: 1, fontSize: 0.2, letterSpacing: 0.05, lineHeight: 1 };
+	const fontProps = { font, color: "#bacabb", fillOpacity: 1, fontSize: 0.18, letterSpacing: 0.05, lineHeight: 1 };
 
 	const {
 		data: { start },

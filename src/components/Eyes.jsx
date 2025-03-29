@@ -1,5 +1,5 @@
 import { useVideoTexture } from "@react-three/drei";
-import React from "react";
+import React, { Suspense } from "react";
 import * as THREE from "three";
 
 const videoURL = "./assets/eyes.mp4";
@@ -11,12 +11,14 @@ const Eyes = () => {
 	texture.repeat.x = 2;
 	// texture.repeat.y = 1.08;
 	return (
-		<mesh position={[9, 0, 10]} rotation-y={Math.PI / 2}>
-			{/* <planeGeometry /> */}
-			<sphereGeometry args={[100, 100]} />
-			{/* <meshNormalMaterial side={THREE.BackSide} /> */}
-			<meshBasicMaterial fog={false} side={THREE.BackSide} map={texture} toneMapped={false} />
-		</mesh>
+		<Suspense>
+			<mesh position={[9, 0, 10]} rotation-y={Math.PI / 2}>
+				{/* <planeGeometry /> */}
+				<sphereGeometry args={[35, 35]} />
+				{/* <meshNormalMaterial side={THREE.BackSide} /> */}
+				<meshBasicMaterial fog={false} side={THREE.BackSide} map={texture} toneMapped={false} />
+			</mesh>
+		</Suspense>
 	);
 };
 

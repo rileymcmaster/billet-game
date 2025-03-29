@@ -8,6 +8,9 @@ import Floor from "./Floor";
 import { useFrame } from "@react-three/fiber";
 import Lights from "./Lights";
 import AppContext from "../context/AppContext";
+import Sounds from "./Sounds";
+import { damp } from "maath/easing";
+import ClickTarget from "./ClickTarget";
 
 const keyboardMap = [
 	{ name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -31,24 +34,50 @@ const animationSet = {
 	danceSilly: "silly dance",
 };
 
-const characterURL = "/assets/models/jrm_3_mixrig_7-transformed.glb";
+const characterURL = "/assets/models/jrm_3_mixrig_8-transformed.glb";
 
-const ExperienceWorld = ({ isEnd }) => {
+const ExperienceWorld = () => {
 	const ref = useRef(null);
+	const ecctrlRef = useRef(null);
 	const mapRef = useRef();
 	let capsuleHeight = 0.7;
 	let capsuleRadius = 0.3;
 
 	const {
-		data: { allowSound },
+		data: { allowSound, isCharacter, isSound, isEnd },
+		actions: { handleEnd },
 	} = useContext(AppContext);
 
+	useEffect(() => {
+		if (!ecctrlRef.current) return;
+		if (isEnd) {
+			console.log("should call rot cam");
+			ecctrlRef.current.disableFollowCam = true;
+			ecctrlRef.current.rotateCamera(-0.125, 0);
+		} else if (isEnd === false) {
+			ecctrlRef.current.disableFollowCam = false;
+			ecctrlRef.current.rotateCamera(0.125, 0);
+		}
+	}, [isEnd]);
+
+	useFrame(() => {
+		if (!ecctrlRef.current) return;
+		const { z } = ecctrlRef.current.translation();
+		const isLocalEnd = z > 22;
+
+		if (isLocalEnd) {
+			handleEnd(true);
+		} else if (isEnd && !isLocalEnd) {
+			handleEnd(false);
+		}
+	});
 	return (
 		<>
+			<ClickTarget position={[0, 4, 24]} />
 			<Physics debug={false} timeStep={"vary"}>
 				<Map ref={mapRef} />
 
-				{mapRef.current && (
+				{isCharacter && (
 					<>
 						<KeyboardControls map={keyboardMap}>
 							<Ecctrl
@@ -66,38 +95,39 @@ const ExperienceWorld = ({ isEnd }) => {
 								sprintJumpMult={1.3}
 								disableControl={false}
 								// disableFollowCam={isEnd}
-								camCollision={true}
-								camInitDis={-2}
+								enabledRotations={[true, true, false]}
+								camCollision={false}
+								camInitDis={-2.5}
 								camMinDis={-1}
+								camLowLimit={-1.5}
+								camUpLimit={1.5}
 								camFollowMult={1000}
 								camLerpMult={1000}
 								turnSpeed={5}
 								friction={20}
 								gravityScale={1.2}
-								floatingDis={0.4}
-								floatHeight={capsuleHeight + 0.5} // Height of the character when floating
-								capsuleHalfHeight={capsuleHeight / 2} // Half-height of the character capsule
+								floatingDis={1.1}
+								fixedCamRotMult={2}
+								floatHeight={capsuleHeight - 2} // Height of the character when floating
+								capsuleHalfHeight={capsuleHeight / 7 + 0.2} // Half-height of the character capsule
 								capsuleRadius={capsuleRadius} // Radius of the character capsule
-								bodySensorSize={[capsuleHeight / 4 - 3, capsuleRadius]}
-								bodySensorPosition={{ x: 0, y: 2, z: capsuleRadius / 2 }}
+								// bodySensorSize={[capsuleHeight / 4, capsuleRadius]}
+								// bodySensorPosition={{ x: 0, y: 0, z: capsuleRadius / 2 }}
 								characterInitDir={Math.PI}
-								mode="FixedCamera">
-								<EcctrlAnimation characterURL={characterURL} animationSet={animationSet}>
-									<Character_JRM ref={ref} />
-								</EcctrlAnimation>
+								mode="FixedCamera"
+								ref={ecctrlRef}>
+								{/* <EcctrlAnimation characterURL={characterURL} animationSet={animationSet}> */}
+								<Character_JRM animationSet={animationSet} ref={ref} />
+								{/* </EcctrlAnimation> */}
 							</Ecctrl>
 						</KeyboardControls>
-						<Lights ref={ref} />
 					</>
 				)}
 
-				{/* <mesh ref={target} scale={0.5} position={[0, 5, 23]}>
-				<boxGeometry args={[1, 1, 1]} />
-				<meshNormalMaterial transparent={true} opacity={1} />
-			</mesh> */}
 				<Floor />
 			</Physics>
-			{allowSound && <Sounds character={ref} />}
+			{isCharacter && <Lights ref={ref} />}
+			{allowSound && isCharacter && <Sounds ref={ref} />}
 		</>
 	);
 };

@@ -4,18 +4,35 @@ Command: npx gltfjsx@6.5.3 /Users/rileymcmaster/Projects/Personal/threejs/ecctrl
 Files: /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/public/jrm_3_mixrig_7.glb [30.03MB] > /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/jrm_3_mixrig_7-transformed.glb [1.64MB] (95%)
 */
 
-import React, { forwardRef, Suspense, useEffect, useRef } from "react";
-import { useGraph } from "@react-three/fiber";
+import React, { forwardRef, Suspense, useContext, useEffect, useRef } from "react";
+import { useFrame, useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import { AdditiveAnimationBlendMode } from "three";
+import AppContext from "../../context/AppContext";
+import { useGame } from "../../ecctrl/Ecctrl";
+import * as THREE from "three";
+
+const animationSet = {
+	jump: "jump joy",
+	idle: "idle",
+	walk: "walk",
+	run: "drunk run",
+	jumpIdle: "jump_land",
+	jumpLand: "jump_land",
+	crawl: "crawl",
+	danceJazz: "dance jazz",
+	danceSlide: "dance slide",
+	danceSilly: "silly dance",
+};
 
 // const defaultPos = [0, -1, 0];
-const defaultPos = [0, -0.7, 0];
-const src = "/assets/models/jrm_3_mixrig_7-transformed.glb";
+// const defaultPos = [0, -1.1, 0];
+const defaultPos = [0, -0.5, 0];
+const src = "/assets/models/jrm_3_mixrig_8-transformed.glb";
 
 const Character_JRM = (props, refFwd) => {
-	const { animation = null, position = defaultPos, scale = 0.75, rotate = 0, ...rest } = props;
+	const { animation = null, position = defaultPos, scale = 0.6, rotate = 0, ...rest } = props;
 	const characterRef = refFwd ? refFwd : useRef(null);
 
 	const { scene, animations } = useGLTF(src);
@@ -23,11 +40,29 @@ const Character_JRM = (props, refFwd) => {
 	const { nodes, materials } = useGraph(clone);
 	const { ref, actions, names, mixer } = useAnimations(animations);
 
+	const curAnimation = useGame((state) => state.curAnimation);
+	const resetAnimation = useGame((state) => state.reset);
+	const initializeAnimationSet = useGame((state) => state.initializeAnimationSet);
+
+	const {
+		actions: { handleLoadCharacter },
+	} = useContext(AppContext);
+
+	useEffect(() => {
+		handleLoadCharacter();
+	}, []);
+
+	// Initialize animation set
+	useEffect(() => {
+		initializeAnimationSet(props.animationSet);
+	}, []);
+
+	// check for looping animation, play that if yes
 	useEffect(() => {
 		// set up some defaults for jump and jumpland
-		actions["jump joy"].blendMode = AdditiveAnimationBlendMode;
-		actions["jump joy"].crossFadeTo(actions["jump_land"], 0.05, false);
-		actions["jump_land"].blendMode = AdditiveAnimationBlendMode;
+		// actions["jump joy"].blendMode = AdditiveAnimationBlendMode;
+		// actions["jump joy"].crossFadeTo(actions["jump_land"], 0.05, false);
+		// actions["jump_land"].blendMode = AdditiveAnimationBlendMode;
 
 		const isValid = names.some((name) => animation === name);
 		if (!animation || !isValid) return;
@@ -35,6 +70,46 @@ const Character_JRM = (props, refFwd) => {
 
 		return () => actions[animation].fadeOut(0.5);
 	}, [actions, names]);
+
+	/**
+	 * Character animations setup
+	 */
+	useEffect(() => {
+		if (animation) return;
+		// Play animation
+		const action = actions[curAnimation ? curAnimation : props.animationSet.jumpIdle];
+
+		// For jump and jump land animation, only play once and clamp when finish
+		if (
+			curAnimation === props.animationSet.jump ||
+			curAnimation === props.animationSet.jumpLand ||
+			curAnimation === props.animationSet.action1 ||
+			curAnimation === props.animationSet.action2 ||
+			curAnimation === props.animationSet.action3 ||
+			curAnimation === props.animationSet.action4
+		) {
+			action.reset().fadeIn(0.2).setLoop(THREE.LoopOnce, undefined).play();
+			action.clampWhenFinished = true;
+		} else {
+			action.reset().fadeIn(0.2).play();
+		}
+
+		// When any action is clamp and finished reset animation
+		action._mixer.addEventListener("finished", () => resetAnimation());
+
+		return () => {
+			// Fade out previous action
+			action.fadeOut(0.2);
+
+			// Clean up mixer listener, and empty the _listeners array
+			action._mixer.removeEventListener("finished", () => resetAnimation());
+			action._mixer._listeners = [];
+		};
+	}, [curAnimation]);
+
+	// useFrame(() => {
+	// 	console.log("char ref", ref);
+	// });
 	return (
 		<Suspense fallback={null}>
 			<group ref={ref} {...rest} dispose={null}>
@@ -47,7 +122,7 @@ const Character_JRM = (props, refFwd) => {
 						material={materials["jrm lo.001"]}
 						skeleton={nodes["jrm-mesh"].skeleton}
 						rotation={[Math.PI / 2, 0, 0]}
-						scale={0.01}
+						// scale={1}
 					/>
 					<primitive object={nodes.jrm} />
 				</group>

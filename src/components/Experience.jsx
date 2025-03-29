@@ -4,10 +4,11 @@ import { Physics } from "@react-three/rapier";
 import Ecctrl, { EcctrlAnimation } from "../ecctrl/Ecctrl";
 import Floor from "./Floor";
 import Lights from "./Lights";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
 import Map from "./Map";
 import Sounds from "./Sounds";
 
+import * as THREE from "three";
 import Eyes from "./Eyes";
 import AppContext from "../context/AppContext";
 import Character_JRM from "./models/Character_JRM";
@@ -42,6 +43,7 @@ import ExperienceWorld from "./ExperienceWorld";
 // };
 
 export default function Experience() {
+	const fogColor = useMemo(() => new THREE.Color("#101010"));
 	// const character = useRef(null);
 
 	// const characterURL = "/assets/models/jrm_3_mixrig_7-transformed.glb";
@@ -52,22 +54,19 @@ export default function Experience() {
 
 	return (
 		<>
-			<Perf position="top-left" />
-			<fog attach="fog" color="black" near={1} far={20} />
+			<Perf position="top-left" deepAnalyze={true} matrixUpdate={true} />
+			<fog attach="fog" color={fogColor} near={1} far={20} />
 
 			<Eyes />
 			<Clock />
-			<Bike />
+			{/* <Bike /> */}
 			<Instructions />
 			{/* <Character_JRM scale={0.5} position={[0, 1.45, 10]} rotate={Math.PI} animation="silly dance" />
 			<Character_JRM scale={0.5} position={[-1, 3.3, -2.2]} rotate={0} animation="dance jazz" />
 			<Character_JRM scale={0.5} position={[3.8, 2.12, 17]} rotate={-Math.PI / 2} animation="dance slide" /> */}
 			<DollModel />
-			{/* <DollLights /> */}
+			<DollLights />
 			<ExperienceWorld />
-			{/* <Lights ref={character} /> */}
-
-			{/* {allowSound && <Sounds character={character} />} */}
 		</>
 	);
 }

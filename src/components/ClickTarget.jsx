@@ -21,9 +21,10 @@ const ClickTarget = (props) => {
 		e.stopPropagation();
 		handleOpenModal();
 	};
+
 	return (
 		<mesh ref={ref} {...props} onClick={handleClick} onPointerOver={handlePointerIn} onPointerOut={handlePointerOut}>
-			<boxGeometry args={[0.5, 1, 0.5]} />
+			<boxGeometry args={[3, 3, 0.5]} />
 			<meshNormalMaterial transparent={true} opacity={0} />
 		</mesh>
 	);

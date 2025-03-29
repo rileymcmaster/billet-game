@@ -1,6 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import React, { forwardRef, Suspense } from "react";
+import React, { forwardRef, Suspense, useContext, useEffect } from "react";
+import AppContext from "../context/AppContext";
 
 const roomURL = "/assets/models/basement_3_room_1-transformed.glb";
 const ceilingURL = "/assets/models/basement_3_ceiling_1-transformed.glb";
@@ -9,11 +10,20 @@ const Map = (props, ref) => {
 	const [{ nodes: roomNodes }, { nodes: ceilingNodes, materials: ceilingMaterials }] = useGLTF([roomURL, ceilingURL]);
 	const basement = roomNodes["basement_room001"];
 
+	const {
+		data: { loadingStage },
+		actions: { handleLoadMap },
+	} = useContext(AppContext);
+
+	useEffect(() => {
+		console.log("map ls:", loadingStage);
+		handleLoadMap();
+	}, []);
+
 	const handleClick = (e) => {
 		// need this click handler to block the clicks on the map where the doll is behind the wall
 		e.stopPropagation();
 	};
-
 	return (
 		<Suspense fallback={null}>
 			<group ref={ref} scale={3} position={[0, -0.9, 8]} dispose={null}>
@@ -30,6 +40,5 @@ const Map = (props, ref) => {
 	);
 };
 useGLTF.preload([roomURL, ceilingURL]);
-// useGLTF.preload(ceilingURL);
 
 export default forwardRef(Map);
