@@ -1,10 +1,20 @@
-import { useCursor } from "@react-three/drei";
+import { Text, useCursor } from "@react-three/drei";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "../context/AppContext";
+import { lerp, damp } from "three/src/math/MathUtils.js";
+
+import fontProps from "../helpers/fontProps";
+import { useFrame } from "@react-three/fiber";
 
 const ClickTarget = (props) => {
 	const { show } = props;
+	const textRef = useRef();
 	const [isActive, setIsActive] = useState(false);
+	const [hasBeenClicked, setHasBeenClicked] = useState(false);
+
+	const ref = useRef(null);
+	const [hover, setHover] = useState(false);
+	useCursor(hover);
 
 	useEffect(() => {
 		if (show) {
@@ -12,9 +22,6 @@ const ClickTarget = (props) => {
 		}
 	}, [show]);
 
-	const ref = useRef(null);
-	const [hover, setHover] = useState(false);
-	useCursor(hover);
 	const {
 		actions: { handleOpenModal },
 	} = useContext(AppContext);
@@ -28,16 +35,32 @@ const ClickTarget = (props) => {
 
 	const handleClick = (e) => {
 		e.stopPropagation();
+		setHasBeenClicked(true);
 		handleOpenModal();
 	};
 
-	if (!isActive) return;
+	useFrame(() => {
+		if (hasBeenClicked) {
+			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 0, 0.5, 1);
+			return;
+		}
+		if (show && textRef.current) {
+			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 0.3, 0.005, 10);
+		}
+	});
 
 	return (
-		<mesh ref={ref} {...props} onClick={handleClick} onPointerOver={handlePointerIn} onPointerOut={handlePointerOut}>
-			<boxGeometry args={[3, 3, 0.5]} />
-			<meshNormalMaterial transparent={true} opacity={0} />
-		</mesh>
+		<group {...props} dispose={null}>
+			<Text ref={textRef} {...fontProps} color={"#242424"} fillOpacity={0} position={[0, -1.8, -0.22]} rotation-y={Math.PI}>
+				(click the shirt)
+			</Text>
+			{isActive && (
+				<mesh ref={ref} onClick={handleClick} onPointerOver={handlePointerIn} onPointerOut={handlePointerOut}>
+					<boxGeometry args={[3, 3, 0.5]} />
+					<meshNormalMaterial transparent={true} opacity={0} />
+				</mesh>
+			)}
+		</group>
 	);
 };
 

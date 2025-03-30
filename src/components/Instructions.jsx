@@ -3,13 +3,12 @@ import { useFrame } from "@react-three/fiber";
 import React, { Suspense, useContext, useRef } from "react";
 import { lerp } from "three/src/math/MathUtils.js";
 import AppContext from "../context/AppContext";
+import fontProps from "../helpers/fontProps";
 
 const Instructions = () => {
 	const text1 = useRef();
 	const text2 = useRef();
 	const groupRef = useRef();
-	const font = "/assets/Doner-RegularDisplay.otf";
-	const fontProps = { font, color: "#bacabb", fillOpacity: 1, fontSize: 0.18, letterSpacing: 0.05, lineHeight: 1 };
 
 	const {
 		data: { start },
@@ -29,7 +28,7 @@ const Instructions = () => {
 		// text1 - starts 1;
 		text1.current.fillOpacity = lerp(text1.current.fillOpacity, -pos - 1, 0.05);
 		// text2 - starts 0
-		text2.current.fillOpacity = lerp(text2.current.fillOpacity, pos + 2, 0.05);
+		text2.current.fillOpacity = lerp(text2.current.fillOpacity, pos + 2.5, 0.05);
 	});
 
 	return (

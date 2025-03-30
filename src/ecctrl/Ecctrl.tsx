@@ -877,7 +877,6 @@ const Ecctrl: ForwardRefRenderFunction<CustomEcctrlRigidBody, EcctrlProps> = ({
     // );
     
     // pivot.rotation.x += x;
-    console.log('rot cam', x)
     
     pivot.rotation.x = THREE.MathUtils.lerp(pivot.rotation.x, (pivot.rotation.x + x), 5);
     // followCam.rotation.x = Math.min(

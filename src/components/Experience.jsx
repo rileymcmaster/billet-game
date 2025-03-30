@@ -20,28 +20,6 @@ import Instructions from "./Instructions";
 import Bike from "./models/Bike";
 import ExperienceWorld from "./ExperienceWorld";
 
-// const keyboardMap = [
-// 	{ name: "forward", keys: ["ArrowUp", "KeyW"] },
-// 	{ name: "backward", keys: ["ArrowDown", "KeyS"] },
-// 	{ name: "leftward", keys: ["ArrowLeft", "KeyA"] },
-// 	{ name: "rightward", keys: ["ArrowRight", "KeyD"] },
-// 	{ name: "jump", keys: ["Space"] },
-// 	{ name: "run", keys: ["Shift"] },
-// ];
-
-// const animationSet = {
-// 	jump: "jump joy",
-// 	idle: "idle",
-// 	walk: "walk",
-// 	run: "drunk run",
-// 	jumpIdle: "jump_land",
-// 	jumpLand: "jump_land",
-// 	crawl: "crawl",
-// 	danceJazz: "dance jazz",
-// 	danceSlide: "dance slide",
-// 	danceSilly: "silly dance",
-// };
-
 export default function Experience() {
 	const fogColor = useMemo(() => new THREE.Color("#101010"));
 	// const character = useRef(null);

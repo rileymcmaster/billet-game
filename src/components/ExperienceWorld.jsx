@@ -34,8 +34,6 @@ const animationSet = {
 	danceSilly: "silly dance",
 };
 
-const characterURL = "/assets/models/jrm_3_mixrig_8-transformed.glb";
-
 const ExperienceWorld = () => {
 	const ref = useRef(null);
 	const ecctrlRef = useRef(null);
@@ -51,7 +49,6 @@ const ExperienceWorld = () => {
 	useEffect(() => {
 		if (!ecctrlRef.current) return;
 		if (isEnd) {
-			console.log("should call rot cam");
 			ecctrlRef.current.disableFollowCam = true;
 			ecctrlRef.current.rotateCamera(-0.125, 0);
 		} else if (isEnd === false) {
@@ -74,7 +71,7 @@ const ExperienceWorld = () => {
 
 	return (
 		<>
-			<ClickTarget show={isEnd} position={[0, 4, 24]} />
+			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 			<Physics debug={true} timeStep={"vary"}>
 				<Map ref={mapRef} />
 
@@ -95,7 +92,6 @@ const ExperienceWorld = () => {
 								slopJumpMult={0.25}
 								sprintJumpMult={1.3}
 								disableControl={false}
-								// disableFollowCam={isEnd}
 								enabledRotations={[true, true, false]}
 								camCollision={false}
 								camInitDis={-2.5}
@@ -108,15 +104,16 @@ const ExperienceWorld = () => {
 								friction={20}
 								gravityScale={1.2}
 								fixedCamRotMult={2}
-								floatingDis={1.2}
-								floatHeight={capsuleHeight - 2} // Height of the character when floating
-								capsuleHalfHeight={capsuleHeight / 2} // Half-height of the character capsule
+								floatingDis={0.5}
+								floatHeight={capsuleHeight + 0.1} // Height of the character when floating
+								capsuleHalfHeight={0.31} // Half-height of the charawcter capsule
 								capsuleRadius={capsuleRadius} // Radius of the character capsule
 								characterInitDir={Math.PI}
+								position={[0, 5, 0]}
 								mode="FixedCamera"
 								ref={ecctrlRef}>
 								{/* <EcctrlAnimation characterURL={characterURL} animationSet={animationSet}> */}
-								<Character_JRM animationSet={animationSet} ref={ref} />
+								<Character_JRM ref={ref} />
 								{/* </EcctrlAnimation> */}
 							</Ecctrl>
 						</KeyboardControls>

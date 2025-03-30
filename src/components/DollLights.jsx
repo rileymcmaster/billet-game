@@ -36,9 +36,8 @@ const DollLights = () => {
 		if (scaleRatioMax >= 0 && scaleRatioTally < scaleRatioMax) {
 			scaleRatioTally = scaleRatioMax;
 		}
-		// console.log({ vec, camera, y: vec.y });
 		if (scaleRatioMax >= 0) {
-			pointLight1.current.intensity = THREE.MathUtils.lerp(pointLight1.current.intensity, scaleRatioMax * 18, 0.001);
+			pointLight1.current.intensity = THREE.MathUtils.lerp(pointLight1.current.intensity, scaleRatioMax * 16, 0.001);
 		}
 
 		return null;
@@ -47,7 +46,7 @@ const DollLights = () => {
 		<group>
 			{/* <spotLight ref={spotlight1} penumbra={0.5} position={[4, 5, 20]} angle={Math.PI / 10} intensity={1} color={spotlightColor} /> */}
 			{/* <spotLight ref={spotlight2} penumbra={0.5} position={[-4, 5, 20]} angle={Math.PI / 10} intensity={1} color={spotlightColor} /> */}
-			<pointLight position={[0, 3.3, 23]} intensity={0} ref={pointLight1} name="lamp" />
+			<pointLight position={[0, 3.2, 22]} intensity={0} ref={pointLight1} name="lamp" />
 			{/* a target for the lights to look at */}
 			{/* <mesh ref={target} scale={0.5} position={[0, 10, 40]}> */}
 			<mesh ref={target} scale={0.5} position={[0, 3.5, 23]}>

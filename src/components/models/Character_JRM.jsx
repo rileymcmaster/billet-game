@@ -18,7 +18,9 @@ const animationSet = {
 	idle: "idle",
 	walk: "walk",
 	run: "drunk run",
-	jumpIdle: "jump_land",
+	fall: "falling",
+	// jumpIdle: "jump joy",
+	jumpIdle: "falling",
 	jumpLand: "jump_land",
 	crawl: "crawl",
 	danceJazz: "dance jazz",
@@ -28,8 +30,9 @@ const animationSet = {
 
 // const defaultPos = [0, -1, 0];
 // const defaultPos = [0, -1.1, 0];
-const defaultPos = [0, -0.4, 0];
-const src = "/assets/models/jrm_3_mixrig_8-transformed.glb";
+const defaultPos = [0, -0.2, 0];
+// const defaultPos = [0, 0, 0];
+const src = "/assets/models/jrm_3_mixrig_11-transformed.glb";
 
 const Character_JRM = (props, refFwd) => {
 	const { animation = null, position = defaultPos, scale = 0.6, rotate = 0, ...rest } = props;
@@ -54,7 +57,7 @@ const Character_JRM = (props, refFwd) => {
 
 	// Initialize animation set
 	useEffect(() => {
-		initializeAnimationSet(props.animationSet);
+		initializeAnimationSet(animationSet);
 	}, []);
 
 	// check for looping animation, play that if yes
@@ -77,16 +80,16 @@ const Character_JRM = (props, refFwd) => {
 	useEffect(() => {
 		if (animation) return;
 		// Play animation
-		const action = actions[curAnimation ? curAnimation : props.animationSet.jumpIdle];
+		const action = actions[curAnimation ? curAnimation : animationSet.jumpIdle];
 
 		// For jump and jump land animation, only play once and clamp when finish
 		if (
-			curAnimation === props.animationSet.jump ||
-			curAnimation === props.animationSet.jumpLand ||
-			curAnimation === props.animationSet.action1 ||
-			curAnimation === props.animationSet.action2 ||
-			curAnimation === props.animationSet.action3 ||
-			curAnimation === props.animationSet.action4
+			curAnimation === animationSet.jump ||
+			curAnimation === animationSet.jumpLand ||
+			curAnimation === animationSet.action1 ||
+			curAnimation === animationSet.action2 ||
+			curAnimation === animationSet.action3 ||
+			curAnimation === animationSet.action4
 		) {
 			action.reset().fadeIn(0.2).setLoop(THREE.LoopOnce, undefined).play();
 			action.clampWhenFinished = true;
