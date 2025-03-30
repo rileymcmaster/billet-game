@@ -72,7 +72,7 @@ const ExperienceWorld = () => {
 	return (
 		<>
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
-			<Physics debug={true} timeStep={"vary"}>
+			<Physics debug={false} timeStep={"vary"}>
 				<Map ref={mapRef} />
 
 				{isCharacter && (
