@@ -48,33 +48,34 @@ const ExperienceWorld = () => {
 		actions: { handleEnd },
 	} = useContext(AppContext);
 
-	// useEffect(() => {
-	// 	if (!ecctrlRef.current) return;
-	// 	if (isEnd) {
-	// 		console.log("should call rot cam");
-	// 		ecctrlRef.current.disableFollowCam = true;
-	// 		ecctrlRef.current.rotateCamera(-0.125, 0);
-	// 	} else if (isEnd === false) {
-	// 		ecctrlRef.current.disableFollowCam = false;
-	// 		ecctrlRef.current.rotateCamera(0.125, 0);
-	// 	}
-	// }, [isEnd]);
+	useEffect(() => {
+		if (!ecctrlRef.current) return;
+		if (isEnd) {
+			console.log("should call rot cam");
+			ecctrlRef.current.disableFollowCam = true;
+			ecctrlRef.current.rotateCamera(-0.125, 0);
+		} else if (isEnd === false) {
+			ecctrlRef.current.disableFollowCam = false;
+			ecctrlRef.current.rotateCamera(0.125, 0);
+		}
+	}, [isEnd]);
 
-	// useFrame(() => {
-	// 	if (!ecctrlRef.current) return;
-	// 	const { z } = ecctrlRef.current.translation();
-	// 	const isLocalEnd = z > 22;
+	useFrame(() => {
+		if (!ecctrlRef.current) return;
+		const { z } = ecctrlRef.current.translation();
+		const isLocalEnd = z > 22;
 
-	// 	if (isLocalEnd) {
-	// 		handleEnd(true);
-	// 	} else if (isEnd && !isLocalEnd) {
-	// 		handleEnd(false);
-	// 	}
-	// });
+		if (isLocalEnd) {
+			handleEnd(true);
+		} else if (isEnd && !isLocalEnd) {
+			handleEnd(false);
+		}
+	});
+
 	return (
 		<>
-			<ClickTarget position={[0, 4, 24]} />
-			<Physics debug={false} timeStep={"vary"}>
+			<ClickTarget show={isEnd} position={[0, 4, 24]} />
+			<Physics debug={true} timeStep={"vary"}>
 				<Map ref={mapRef} />
 
 				{isCharacter && (
@@ -106,13 +107,11 @@ const ExperienceWorld = () => {
 								turnSpeed={5}
 								friction={20}
 								gravityScale={1.2}
-								floatingDis={1.1}
 								fixedCamRotMult={2}
+								floatingDis={1.2}
 								floatHeight={capsuleHeight - 2} // Height of the character when floating
-								capsuleHalfHeight={capsuleHeight / 7 + 0.2} // Half-height of the character capsule
+								capsuleHalfHeight={capsuleHeight / 2} // Half-height of the character capsule
 								capsuleRadius={capsuleRadius} // Radius of the character capsule
-								// bodySensorSize={[capsuleHeight / 4, capsuleRadius]}
-								// bodySensorPosition={{ x: 0, y: 0, z: capsuleRadius / 2 }}
 								characterInitDir={Math.PI}
 								mode="FixedCamera"
 								ref={ecctrlRef}>

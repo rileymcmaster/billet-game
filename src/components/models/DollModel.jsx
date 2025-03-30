@@ -10,12 +10,10 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import * as THREE from "three";
 import { calculateFloat } from "../../helpers/mathHelper";
-import ClickTarget from "../ClickTarget";
 
 const src = "/assets/models/oz_4_2-transformed.glb";
 
 const DollModel = ({ handleEnd, ...props }) => {
-	const [clickable, setClickable] = useState(false);
 	const group = useRef();
 	const skinMesh = useRef();
 
@@ -28,13 +26,8 @@ const DollModel = ({ handleEnd, ...props }) => {
 		const action = actions["uncross arms"];
 		action.clampWhenFinished = true;
 		action.reset().setLoop(THREE.LoopOnce).play().paused = true;
-		// mixer.addEventListener("finished", handleEnd);
 
-		// mixer.addEventListener("finished", () => {
-		// 	setClickable(true);
-		// });
 		return () => {
-			// mixer.removeEventListener("finished", handleEnd);
 			action.fadeOut(0.5);
 		};
 	}, []);
@@ -79,10 +72,9 @@ const DollModel = ({ handleEnd, ...props }) => {
 				</group>
 				<skinnedMesh receiveShadow ref={skinMesh} name="Oz_hi003" geometry={nodes.Oz_hi003.geometry} material={materials["Material_0.006"]} skeleton={nodes.Oz_hi003.skeleton}></skinnedMesh>
 			</group>
-			{/* {clickable && <ClickTarget position={[0, 1.5, 0]} />} */}
 		</group>
 	);
 };
 
 export default DollModel;
-useGLTF.preload(src);
+// useGLTF.preload(src);

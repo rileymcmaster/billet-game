@@ -76,11 +76,6 @@ const audioSpots = [
 const Sounds = ({}, ref) => {
 	const allSpots = useRef([]);
 
-	// const {
-	// 	data: { loadingStage },
-	// 	actions: { handleLoadSound },
-	// } = useContext(AppContext);
-
 	useEffect(() => {
 		if (!ref || !ref.current) return;
 

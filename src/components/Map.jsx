@@ -11,12 +11,10 @@ const Map = (props, ref) => {
 	const basement = roomNodes["basement_room001"];
 
 	const {
-		data: { loadingStage },
 		actions: { handleLoadMap },
 	} = useContext(AppContext);
 
 	useEffect(() => {
-		console.log("map ls:", loadingStage);
 		handleLoadMap();
 	}, []);
 

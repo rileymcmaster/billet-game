@@ -4,11 +4,9 @@ import Game from "../components/Game";
 
 const AllEyes = () => {
 	return (
-		<>
-			<AppProvider>
-				<Game />
-			</AppProvider>
-		</>
+		<AppProvider>
+			<Game />
+		</AppProvider>
 	);
 };
 

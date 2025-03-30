@@ -28,7 +28,7 @@ const animationSet = {
 
 // const defaultPos = [0, -1, 0];
 // const defaultPos = [0, -1.1, 0];
-const defaultPos = [0, -0.5, 0];
+const defaultPos = [0, -0.4, 0];
 const src = "/assets/models/jrm_3_mixrig_8-transformed.glb";
 
 const Character_JRM = (props, refFwd) => {

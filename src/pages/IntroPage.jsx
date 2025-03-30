@@ -46,7 +46,7 @@ const IntroPage = () => {
 	return (
 		<>
 			<Menu show={start && isMenuOpen} onClose={handleCloseMenu} />
-			<section className="intro">
+			<div className="intro">
 				<motion.div
 					className="title-container"
 					layout
@@ -95,7 +95,7 @@ const IntroPage = () => {
 						</motion.div>
 					)}
 				</AnimatePresence>
-			</section>
+			</div>
 		</>
 	);
 };

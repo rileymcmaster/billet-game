@@ -33,6 +33,10 @@ $color-white: #d7dce1;
 	letter-spacing: 2px;
 }
 
+section {
+	background-color: $color-black;
+}
+
 ul,
 ol,
 li {
@@ -122,7 +126,7 @@ a {
 }
 
 canvas {
-	height: 100vh;
+	// height: 100vh;
 }
 
 .iframe-wrapper {

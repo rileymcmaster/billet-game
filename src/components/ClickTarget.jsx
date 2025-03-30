@@ -1,8 +1,17 @@
 import { useCursor } from "@react-three/drei";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "../context/AppContext";
 
 const ClickTarget = (props) => {
+	const { show } = props;
+	const [isActive, setIsActive] = useState(false);
+
+	useEffect(() => {
+		if (show) {
+			setIsActive(true);
+		}
+	}, [show]);
+
 	const ref = useRef(null);
 	const [hover, setHover] = useState(false);
 	useCursor(hover);
@@ -21,6 +30,8 @@ const ClickTarget = (props) => {
 		e.stopPropagation();
 		handleOpenModal();
 	};
+
+	if (!isActive) return;
 
 	return (
 		<mesh ref={ref} {...props} onClick={handleClick} onPointerOver={handlePointerIn} onPointerOut={handlePointerOut}>

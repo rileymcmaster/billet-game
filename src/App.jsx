@@ -6,12 +6,12 @@ import "./css/styles.scss";
 
 const App = () => {
 	return (
-		<div>
+		<>
 			<Routes>
 				<Route path="/" element={<SimpleContent />}></Route>
 				<Route path="/game" element={<AllEyes />}></Route>
 			</Routes>
-		</div>
+		</>
 	);
 };
 
