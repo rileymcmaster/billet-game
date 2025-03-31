@@ -9,13 +9,11 @@ const Eyes = () => {
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.repeat.x = 2;
-	// texture.repeat.y = 1.08;
+
 	return (
 		<Suspense>
 			<mesh position={[9, 0, 10]} rotation-y={Math.PI / 2}>
-				{/* <planeGeometry /> */}
 				<sphereGeometry args={[35, 35]} />
-				{/* <meshNormalMaterial side={THREE.BackSide} /> */}
 				<meshBasicMaterial fog={false} side={THREE.BackSide} map={texture} toneMapped={false} />
 			</mesh>
 		</Suspense>

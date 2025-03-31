@@ -1,10 +1,9 @@
-import React, { forwardRef, Suspense, useContext, useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import SoundsSpot from "./SoundsSpot";
 import { useFrame } from "@react-three/fiber";
 
 import { damp } from "three/src/math/MathUtils.js";
 import { calculateFloat } from "../helpers/mathHelper";
-import AppContext from "../context/AppContext";
 
 const audioSpots = [
 	{
@@ -91,6 +90,10 @@ const Sounds = ({}, ref) => {
 	}, [allSpots.current, ref.current]);
 
 	useFrame(({ camera }) => {
+		if (!ref || !ref.current) return;
+
+		if (allSpots.current.length <= 0) return;
+
 		const isDefault = allSpots.current[0].element.getPlaybackRate();
 		const { ratioMax } = calculateFloat({ start: 14, end: 18, value: camera.position.z });
 		if (ratioMax > 0) {
@@ -102,6 +105,7 @@ const Sounds = ({}, ref) => {
 				spot.element.setPlaybackRate(damp(spot.element.playbackRate, 1, 0.25, 2));
 			});
 		}
+		return null;
 	});
 
 	return (

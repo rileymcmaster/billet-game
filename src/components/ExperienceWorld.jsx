@@ -1,14 +1,15 @@
 import { Physics } from "@react-three/rapier";
-import React, { useContext, useEffect, useRef } from "react";
-import Map from "./Map";
+import React, { useContext, useEffect, useRef, lazy } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import Ecctrl from "../ecctrl/Ecctrl";
-import Character_JRM from "./models/Character_JRM";
 import { useFrame } from "@react-three/fiber";
-import Lights from "./Lights";
 import AppContext from "../context/AppContext";
-import Sounds from "./Sounds";
-import ClickTarget from "./ClickTarget";
+
+import Character_JRM from "./models/Character_JRM";
+import Map from "./Map";
+const Lights = lazy(() => import("./Lights"));
+const ClickTarget = lazy(() => import("./ClickTarget"));
+const Sounds = lazy(() => import("./Sounds"));
 
 const keyboardMap = [
 	{ name: "forward", keys: ["ArrowUp", "KeyW"] },
