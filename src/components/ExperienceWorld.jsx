@@ -59,6 +59,9 @@ const ExperienceWorld = () => {
 		<>
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 			<Physics debug={false} timeStep={"vary"}>
+				<Map ref={mapRef} />
+
+				<Floor />
 				{isCharacter && (
 					<>
 						<KeyboardControls map={keyboardMap}>
@@ -104,9 +107,6 @@ const ExperienceWorld = () => {
 						</KeyboardControls>
 					</>
 				)}
-				<Map ref={mapRef} />
-
-				<Floor />
 			</Physics>
 			{isCharacter && <Lights ref={ref} />}
 			{allowSound && isCharacter && <Sounds ref={ref} />}
