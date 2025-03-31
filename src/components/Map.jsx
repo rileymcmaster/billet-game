@@ -2,6 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 import React, { forwardRef, Suspense, useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
+import Floor from "./Floor";
 
 const roomURL = "/assets/models/basement_3_room_1-transformed.glb";
 const ceilingURL = "/assets/models/basement_3_ceiling_1-transformed.glb";
@@ -24,15 +25,18 @@ const Map = (props, ref) => {
 	};
 	return (
 		<Suspense fallback={null}>
-			<group ref={ref} scale={3} position={[0, -0.9, 8]} dispose={null}>
-				<group {...props} dispose={null}>
-					<mesh geometry={ceilingNodes.basement_ceiling.geometry} material={ceilingMaterials["Material_0.013"]} scale={0.96} />
-				</group>
-				<RigidBody receiveShadow type="fixed" ccd position={[0, 0, 0]} colliders="trimesh">
-					<group onClick={handleClick} onPointerOver={handleClick} dispose={null}>
-						<primitive object={basement} />
+			<group>
+				<group ref={ref} scale={3} position={[0, -0.9, 8]} dispose={null}>
+					<group {...props} dispose={null}>
+						<mesh geometry={ceilingNodes.basement_ceiling.geometry} material={ceilingMaterials["Material_0.013"]} scale={0.96} />
 					</group>
-				</RigidBody>
+					<RigidBody receiveShadow type="fixed" ccd position={[0, 0, 0]} colliders="trimesh">
+						<group onClick={handleClick} onPointerOver={handleClick} dispose={null}>
+							<primitive object={basement} />
+						</group>
+					</RigidBody>
+				</group>
+				<Floor />
 			</group>
 		</Suspense>
 	);

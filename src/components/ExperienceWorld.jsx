@@ -4,7 +4,6 @@ import Map from "./Map";
 import { KeyboardControls } from "@react-three/drei";
 import Ecctrl from "../ecctrl/Ecctrl";
 import Character_JRM from "./models/Character_JRM";
-import Floor from "./Floor";
 import { useFrame } from "@react-three/fiber";
 import Lights from "./Lights";
 import AppContext from "../context/AppContext";
@@ -59,9 +58,6 @@ const ExperienceWorld = () => {
 		<>
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 			<Physics debug={false} timeStep={"vary"}>
-				<Map ref={mapRef} />
-
-				<Floor />
 				{isCharacter && (
 					<>
 						<KeyboardControls map={keyboardMap}>
@@ -99,7 +95,7 @@ const ExperienceWorld = () => {
 								capsuleHalfHeight={0.29} // Half-height of the charawcter capsule
 								capsuleRadius={capsuleRadius} // Radius of the character capsule
 								characterInitDir={Math.PI}
-								position={[0, 5, 0]}
+								position={[0, 10, 0]}
 								mode="FixedCamera"
 								ref={ecctrlRef}>
 								<Character_JRM ref={ref} />
@@ -107,6 +103,7 @@ const ExperienceWorld = () => {
 						</KeyboardControls>
 					</>
 				)}
+				<Map ref={mapRef} />
 			</Physics>
 			{isCharacter && <Lights ref={ref} />}
 			{allowSound && isCharacter && <Sounds ref={ref} />}
