@@ -57,56 +57,54 @@ const ExperienceWorld = () => {
 
 	return (
 		<>
-			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 			<Physics debug={false} timeStep={"vary"}>
 				{isCharacter && (
-					<>
-						<KeyboardControls map={keyboardMap}>
-							<Ecctrl
-								// debug
-								animated
-								followLight
-								springK={2}
-								dampingC={0.2}
-								maxVelLimit={0.81}
-								turnVelMultiplier={0.09}
-								sprintMult={2.9}
-								jumpVel={4.5}
-								jumpForceToGroundMult={42}
-								slopeDownExtraForce={0}
-								slopeUpExtraForce={0}
-								slopeMaxAngle={Math.PI}
-								slopJumpMult={0.25}
-								sprintJumpMult={1.3}
-								disableControl={false}
-								enabledRotations={[true, true, false]}
-								camCollision={false}
-								camInitDis={-2.5}
-								camMinDis={-1}
-								camLowLimit={-1.5}
-								camUpLimit={1.5}
-								camFollowMult={1000}
-								camLerpMult={1000}
-								turnSpeed={5}
-								friction={20}
-								gravityScale={1.2}
-								fixedCamRotMult={2}
-								floatingDis={0.8}
-								floatHeight={capsuleHeight + 1.1} // Height of the character when floating
-								capsuleHalfHeight={0.29} // Half-height of the charawcter capsule
-								capsuleRadius={capsuleRadius} // Radius of the character capsule
-								characterInitDir={Math.PI}
-								position={[0, 10, 0]}
-								mode="FixedCamera"
-								ref={ecctrlRef}>
-								<Character_JRM ref={ref} />
-							</Ecctrl>
-						</KeyboardControls>
-					</>
+					<KeyboardControls map={keyboardMap}>
+						<Ecctrl
+							// debug
+							animated
+							followLight
+							springK={2}
+							dampingC={0.2}
+							maxVelLimit={0.81}
+							turnVelMultiplier={0.09}
+							sprintMult={2.9}
+							jumpVel={4.5}
+							jumpForceToGroundMult={42}
+							slopeDownExtraForce={0}
+							slopeUpExtraForce={0}
+							slopeMaxAngle={Math.PI}
+							slopJumpMult={0.25}
+							sprintJumpMult={1.3}
+							disableControl={false}
+							enabledRotations={[true, true, false]}
+							camCollision={false}
+							camInitDis={-2.5}
+							camMinDis={-1}
+							camLowLimit={-1.5}
+							camUpLimit={1.5}
+							camFollowMult={1000}
+							camLerpMult={1000}
+							turnSpeed={5}
+							friction={20}
+							gravityScale={1.2}
+							fixedCamRotMult={2}
+							floatingDis={0.8}
+							floatHeight={capsuleHeight + 1.1} // Height of the character when floating
+							capsuleHalfHeight={0.29} // Half-height of the charawcter capsule
+							capsuleRadius={capsuleRadius} // Radius of the character capsule
+							characterInitDir={Math.PI}
+							position={[0, 10, 0]}
+							mode="FixedCamera"
+							ref={ecctrlRef}>
+							<Character_JRM ref={ref} />
+						</Ecctrl>
+					</KeyboardControls>
 				)}
 				<Map ref={mapRef} />
 			</Physics>
 			{isCharacter && <Lights ref={ref} />}
+			{isCharacter && <ClickTarget show={isEnd} position={[0, 4, 23]} />}
 			{allowSound && isCharacter && <Sounds ref={ref} />}
 		</>
 	);

@@ -9,7 +9,6 @@ const Lights = (props, ref) => {
 	const ambientLightRef = useRef();
 	const spotLightRef = useRef();
 	const spotLightTarget2 = useRef();
-	// useHelper(pointLightRef, THREE.PointLightHelper, 1);
 
 	useEffect(() => {
 		if (!spotLightRef.current || !spotLightTarget2.current) return;
@@ -26,7 +25,6 @@ const Lights = (props, ref) => {
 			<pointLight position={[2.5, 5, 16]} intensity={5} name="lamp" />
 			<pointLight position={[-2, 1, 20]} intensity={6} ref={pointLightRef} name="lamp" />
 
-			{/* <spotLight position={[0, 6, -0.5]} intensity={40} angle={Math.PI / 6} aw penumbra={0.5} /> */}
 			<spotLight ref={spotLightRef} position={[0, 6, 10]} intensity={60} angle={Math.PI / 4} penumbra={1} />
 			<mesh ref={spotLightTarget2} position={[0, 2, 10]}>
 				{/* <boxGeometry args={[1, 1, 1]} />
