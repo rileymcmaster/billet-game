@@ -36,7 +36,7 @@ const Game = () => {
 				camera={{
 					fov: 75,
 					near: 0.1,
-					far: 40,
+					far: 55,
 				}}>
 				<Suspense fallback={null}>
 					<Experience />

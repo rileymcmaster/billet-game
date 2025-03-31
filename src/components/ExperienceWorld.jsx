@@ -1,15 +1,14 @@
 import { Physics } from "@react-three/rapier";
-import React, { forwardRef, useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Map from "./Map";
 import { KeyboardControls } from "@react-three/drei";
-import Ecctrl, { EcctrlAnimation } from "../ecctrl/Ecctrl";
+import Ecctrl from "../ecctrl/Ecctrl";
 import Character_JRM from "./models/Character_JRM";
 import Floor from "./Floor";
 import { useFrame } from "@react-three/fiber";
 import Lights from "./Lights";
 import AppContext from "../context/AppContext";
 import Sounds from "./Sounds";
-import { damp } from "maath/easing";
 import ClickTarget from "./ClickTarget";
 
 const keyboardMap = [
@@ -21,19 +20,6 @@ const keyboardMap = [
 	{ name: "run", keys: ["Shift"] },
 ];
 
-const animationSet = {
-	jump: "jump joy",
-	idle: "idle",
-	walk: "walk",
-	run: "drunk run",
-	jumpIdle: "jump_land",
-	jumpLand: "jump_land",
-	crawl: "crawl",
-	danceJazz: "dance jazz",
-	danceSlide: "dance slide",
-	danceSilly: "silly dance",
-};
-
 const ExperienceWorld = () => {
 	const ref = useRef(null);
 	const ecctrlRef = useRef(null);
@@ -42,7 +28,7 @@ const ExperienceWorld = () => {
 	let capsuleRadius = 0.3;
 
 	const {
-		data: { allowSound, isCharacter, isSound, isEnd },
+		data: { allowSound, isCharacter, isEnd },
 		actions: { handleEnd },
 	} = useContext(AppContext);
 
@@ -73,8 +59,6 @@ const ExperienceWorld = () => {
 		<>
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 			<Physics debug={false} timeStep={"vary"}>
-				<Map ref={mapRef} />
-
 				{isCharacter && (
 					<>
 						<KeyboardControls map={keyboardMap}>
@@ -89,6 +73,9 @@ const ExperienceWorld = () => {
 								sprintMult={2.9}
 								jumpVel={4.5}
 								jumpForceToGroundMult={42}
+								slopeDownExtraForce={0}
+								slopeUpExtraForce={0}
+								slopeMaxAngle={Math.PI}
 								slopJumpMult={0.25}
 								sprintJumpMult={1.3}
 								disableControl={false}
@@ -104,21 +91,20 @@ const ExperienceWorld = () => {
 								friction={20}
 								gravityScale={1.2}
 								fixedCamRotMult={2}
-								floatingDis={0.5}
-								floatHeight={capsuleHeight + 0.1} // Height of the character when floating
-								capsuleHalfHeight={0.31} // Half-height of the charawcter capsule
+								floatingDis={0.8}
+								floatHeight={capsuleHeight + 1.1} // Height of the character when floating
+								capsuleHalfHeight={0.29} // Half-height of the charawcter capsule
 								capsuleRadius={capsuleRadius} // Radius of the character capsule
 								characterInitDir={Math.PI}
 								position={[0, 5, 0]}
 								mode="FixedCamera"
 								ref={ecctrlRef}>
-								{/* <EcctrlAnimation characterURL={characterURL} animationSet={animationSet}> */}
 								<Character_JRM ref={ref} />
-								{/* </EcctrlAnimation> */}
 							</Ecctrl>
 						</KeyboardControls>
 					</>
 				)}
+				<Map ref={mapRef} />
 
 				<Floor />
 			</Physics>

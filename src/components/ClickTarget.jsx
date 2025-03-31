@@ -45,7 +45,7 @@ const ClickTarget = (props) => {
 			return;
 		}
 		if (show && textRef.current) {
-			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 0.3, 0.005, 10);
+			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 1, 0.005, 10);
 		}
 	});
 
