@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 
 const AppContext = createContext(null);
 
@@ -41,9 +41,9 @@ export const AppProvider = ({ children }) => {
 		setIsEnd(end);
 	}
 
-	const isMap = loadingStage === 1;
-	const isCharacter = loadingStage <= 2;
-	const isSound = loadingStage <= 3;
+	let isMap = useMemo(() => loadingStage >= 1, [loadingStage]);
+	let isCharacter = useMemo(() => loadingStage >= 2, [loadingStage]);
+	let isSound = useMemo(() => loadingStage >= 3, [loadingStage]);
 
 	const data = { allowSound, END_POS, start, showModal, isMap, isCharacter, isSound, loadingStage, isEnd };
 	const actions = { handleSound, handleStart, handleOpenModal, handleCloseModal, handleLoadMap, handleLoadCharacter, handleLoadSound, handleEnd };

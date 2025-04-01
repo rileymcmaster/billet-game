@@ -28,7 +28,7 @@ const ExperienceWorld = () => {
 	let capsuleRadius = 0.3;
 
 	const {
-		data: { allowSound, isCharacter, isEnd },
+		data: { allowSound, isCharacter, isEnd, isMap },
 		actions: { handleEnd },
 	} = useContext(AppContext);
 
@@ -59,7 +59,7 @@ const ExperienceWorld = () => {
 		<>
 			<Physics debug={false} timeStep={"vary"}>
 				<Map ref={mapRef} />
-				{isCharacter && (
+				{isMap && (
 					<KeyboardControls map={keyboardMap}>
 						<Ecctrl
 							// debug

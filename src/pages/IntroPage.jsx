@@ -9,11 +9,12 @@ import Menu from "../components/Menu";
 const IntroPage = () => {
 	const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const { progress } = useProgress();
 	const {
-		data: { start },
+		data: { start, isMap },
 		actions: { handleSound, handleStart },
 	} = useContext(AppContext);
+	const { progress } = useProgress();
+	const isLoaded = progress >= 100 && isMap;
 
 	useEffect(() => {
 		const handleKeypress = (e) => {
@@ -78,13 +79,13 @@ const IntroPage = () => {
 									<p>Use the joystick to move and the button to jump</p>
 								)}
 								<div className="button-container">
-									<button className={`button ${progress >= 100 ? "loaded" : ""}`} disabled={progress < 100} onClick={handleAcceptSound}>
+									<button className={`button ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleAcceptSound}>
 										<motion.span className="loading" style={{ width: `${progress}%` }}></motion.span>
 										<span className="message--default">ENTER WITH SOUND</span>
 										<span className="message--loading">loading...</span>
 									</button>
 
-									<button className={`button--alt ${progress >= 100 ? "loaded" : ""}`} onClick={handleMute}>
+									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} onClick={handleMute}>
 										without sound
 									</button>
 								</div>

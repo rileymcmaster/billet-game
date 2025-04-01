@@ -27,7 +27,7 @@ export default function Experience() {
 	const fogColor = useMemo(() => new THREE.Color("#101010"));
 
 	const {
-		data: { allowSound, isCharacter },
+		data: { isCharacter },
 	} = useContext(AppContext);
 
 	return (
