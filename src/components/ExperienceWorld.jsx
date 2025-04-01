@@ -58,6 +58,7 @@ const ExperienceWorld = () => {
 	return (
 		<>
 			<Physics debug={false} timeStep={"vary"}>
+				<Map ref={mapRef} />
 				{isCharacter && (
 					<KeyboardControls map={keyboardMap}>
 						<Ecctrl
@@ -94,14 +95,13 @@ const ExperienceWorld = () => {
 							capsuleHalfHeight={0.29} // Half-height of the charawcter capsule
 							capsuleRadius={capsuleRadius} // Radius of the character capsule
 							characterInitDir={Math.PI}
-							position={[0, 10, 0]}
+							position={[0, 5, 0]}
 							mode="FixedCamera"
 							ref={ecctrlRef}>
 							<Character_JRM ref={ref} />
 						</Ecctrl>
 					</KeyboardControls>
 				)}
-				<Map ref={mapRef} />
 			</Physics>
 			{isCharacter && <Lights ref={ref} />}
 			{isCharacter && <ClickTarget show={isEnd} position={[0, 4, 23]} />}
