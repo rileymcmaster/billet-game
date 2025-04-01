@@ -10,7 +10,7 @@ const IntroPage = () => {
 	const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const {
-		data: { start, isMap },
+		data: { start, isMap, loadingStage },
 		actions: { handleSound, handleStart },
 	} = useContext(AppContext);
 	const { progress } = useProgress();
@@ -80,12 +80,12 @@ const IntroPage = () => {
 								)}
 								<div className="button-container">
 									<button className={`button ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleAcceptSound}>
-										<motion.span className="loading" style={{ width: `${progress}%` }}></motion.span>
+										<motion.span className="loading" style={{ width: `${progress * (loadingStage - 1)}%` }}></motion.span>
 										<span className="message--default">ENTER WITH SOUND</span>
 										<span className="message--loading">loading...</span>
 									</button>
 
-									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} onClick={handleMute}>
+									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleMute}>
 										without sound
 									</button>
 								</div>
