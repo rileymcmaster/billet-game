@@ -58,9 +58,9 @@ const ExperienceWorld = () => {
 	return (
 		<>
 			<Physics debug={false} timeStep={"vary"}>
-				<Map />
 				<Floor />
-				{isMap && (
+				<Map />
+	
 					<KeyboardControls map={keyboardMap}>
 						<Ecctrl
 							// debug
@@ -99,10 +99,13 @@ const ExperienceWorld = () => {
 							position={[0, 5, 0]}
 							mode="FixedCamera"
 							ref={ecctrlRef}>
-							<Character_JRM ref={ref} />
+								{isMap && (
+
+									<Character_JRM ref={ref} />
+								)}
 						</Ecctrl>
 					</KeyboardControls>
-				)}
+				
 			</Physics>
 
 			<Lights ref={ref} />
