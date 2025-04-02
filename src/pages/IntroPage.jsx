@@ -14,7 +14,7 @@ const IntroPage = () => {
 		actions: { handleSound, handleStart },
 	} = useContext(AppContext);
 	const { progress } = useProgress();
-	const isLoaded = progress >= 100 && isMap;
+	const isLoaded = progress >= 100;
 
 	useEffect(() => {
 		const handleKeypress = (e) => {
@@ -80,7 +80,7 @@ const IntroPage = () => {
 								)}
 								<div className="button-container">
 									<button className={`button ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleAcceptSound}>
-										<motion.span className="loading" style={{ width: `${progress * (loadingStage - 1)}%` }}></motion.span>
+										<motion.span className="loading" style={{ width: `${progress}%` }}></motion.span>
 										<span className="message--default">ENTER WITH SOUND</span>
 										<span className="message--loading">loading...</span>
 									</button>

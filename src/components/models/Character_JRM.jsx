@@ -5,10 +5,9 @@ Files: /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/public/jrm_3_mixrig
 */
 
 import React, { forwardRef, Suspense, useContext, useEffect, useRef } from "react";
-import { useFrame, useGraph } from "@react-three/fiber";
+import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
-import { AdditiveAnimationBlendMode } from "three";
 import AppContext from "../../context/AppContext";
 import { useGame } from "../../ecctrl/Ecctrl";
 import * as THREE from "three";
@@ -19,7 +18,6 @@ const animationSet = {
 	walk: "walk",
 	run: "drunk run",
 	fall: "falling",
-	// jumpIdle: "jump joy",
 	jumpIdle: "falling",
 	jumpLand: "jump_land",
 	crawl: "crawl",
@@ -28,10 +26,8 @@ const animationSet = {
 	danceSilly: "silly dance",
 };
 
-// const defaultPos = [0, -1, 0];
-// const defaultPos = [0, -1.1, 0];
 const defaultPos = [0, -0.5, 0];
-// const defaultPos = [0, 0, 0];
+
 const src = "/assets/models/jrm_3_mixrig_11-transformed.glb";
 
 const Character_JRM = (props, refFwd) => {
@@ -110,9 +106,6 @@ const Character_JRM = (props, refFwd) => {
 		};
 	}, [curAnimation]);
 
-	// useFrame(() => {
-	// 	console.log("char ref", ref);
-	// });
 	return (
 		<Suspense fallback={null}>
 			<group ref={ref} {...rest} dispose={null}>
@@ -125,7 +118,6 @@ const Character_JRM = (props, refFwd) => {
 						material={materials["jrm lo.001"]}
 						skeleton={nodes["jrm-mesh"].skeleton}
 						rotation={[Math.PI / 2, 0, 0]}
-						// scale={1}
 					/>
 					<primitive object={nodes.jrm} />
 				</group>
