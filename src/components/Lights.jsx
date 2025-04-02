@@ -1,10 +1,7 @@
-import React, { forwardRef, Suspense, useEffect } from "react";
-import { useHelper } from "@react-three/drei";
+import React, { Suspense, useEffect } from "react";
 import { useRef } from "react";
-import * as THREE from "three";
 
-const Lights = (props, ref) => {
-	const directionalLightRef = useRef();
+const Lights = (props) => {
 	const pointLightRef = useRef();
 	const ambientLightRef = useRef();
 	const spotLightRef = useRef();
@@ -15,10 +12,9 @@ const Lights = (props, ref) => {
 
 		spotLightRef.current.target = spotLightTarget2.current;
 	}, [spotLightRef.current, spotLightTarget2.current]);
+
 	return (
 		<Suspense fallback={null}>
-			<directionalLight position={[5, 0, 1]} intensity={1.5} target={ref.current} name="followLight" ref={directionalLightRef} />
-
 			<pointLight position={[0, 5, -5]} intensity={5} name="lamp" />
 			<pointLight position={[0, 5, 2]} intensity={10} name="lamp" />
 			<pointLight position={[2.5, 4.4, 9.5]} intensity={8} name="lamp" />
@@ -36,4 +32,4 @@ const Lights = (props, ref) => {
 	);
 };
 
-export default forwardRef(Lights);
+export default Lights;

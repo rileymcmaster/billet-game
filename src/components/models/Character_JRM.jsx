@@ -4,11 +4,10 @@ Command: npx gltfjsx@6.5.3 /Users/rileymcmaster/Projects/Personal/threejs/ecctrl
 Files: /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/public/jrm_3_mixrig_7.glb [30.03MB] > /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/jrm_3_mixrig_7-transformed.glb [1.64MB] (95%)
 */
 
-import React, { forwardRef, Suspense, useContext, useEffect, useRef } from "react";
+import React, { forwardRef, Suspense, useEffect, useRef } from "react";
 import { useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
-import AppContext from "../../context/AppContext";
 import { useGame } from "../../ecctrl/Ecctrl";
 import * as THREE from "three";
 
@@ -43,14 +42,6 @@ const Character_JRM = (props, refFwd) => {
 	const resetAnimation = useGame((state) => state.reset);
 	const initializeAnimationSet = useGame((state) => state.initializeAnimationSet);
 
-	const {
-		actions: { handleLoadCharacter },
-	} = useContext(AppContext);
-
-	useEffect(() => {
-		handleLoadCharacter();
-	}, []);
-
 	// Initialize animation set
 	useEffect(() => {
 		initializeAnimationSet(animationSet);
@@ -58,11 +49,6 @@ const Character_JRM = (props, refFwd) => {
 
 	// check for looping animation, play that if yes
 	useEffect(() => {
-		// set up some defaults for jump and jumpland
-		// actions["jump joy"].blendMode = AdditiveAnimationBlendMode;
-		// actions["jump joy"].crossFadeTo(actions["jump_land"], 0.05, false);
-		// actions["jump_land"].blendMode = AdditiveAnimationBlendMode;
-
 		const isValid = names.some((name) => animation === name);
 		if (!animation || !isValid) return;
 		actions[animation].reset().fadeIn(0.5).play();

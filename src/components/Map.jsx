@@ -1,9 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import React, { forwardRef, Suspense, useContext, useEffect, useMemo } from "react";
+import React, { Suspense, useMemo } from "react";
 import * as THREE from "three";
-
-import AppContext from "../context/AppContext";
 
 const roomURL = "/assets/models/basement_3_room_1-transformed.glb";
 const ceilingURL = "/assets/models/basement_3_ceiling_1-transformed.glb";
@@ -13,14 +11,6 @@ const Map = (props) => {
 	const [{ nodes: roomNodes }, { nodes: ceilingNodes, materials: ceilingMaterials }, { nodes: mirrorNodes, materials: mirrorMaterials }] = useGLTF([roomURL, ceilingURL, mirrorURL]);
 	const basement = roomNodes["basement_room001"];
 	const fogColor = useMemo(() => new THREE.Color("#101010"));
-
-	const {
-		actions: { handleLoadMap },
-	} = useContext(AppContext);
-
-	useEffect(() => {
-		handleLoadMap();
-	}, []);
 
 	const handleClick = (e) => {
 		// need this click handler to block the clicks on the map where the doll is behind the wall

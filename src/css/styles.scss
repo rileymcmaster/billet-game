@@ -326,6 +326,8 @@ button {
 		}
 		&--loading {
 			font-size: 0.7em;
+			color: $color-white;
+			mix-blend-mode: difference;
 		}
 	}
 	&.loaded {

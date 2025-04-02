@@ -8,9 +8,7 @@ export const AppProvider = ({ children }) => {
 	const [allowSound, setAllowSound] = useState(false);
 	const [start, setStart] = useState(false);
 	const [showModal, setShowModal] = useState(false);
-	const [loadingStage, setLoadingStage] = useState(0);
 
-	
 	const handleSound = (peep) => {
 		setAllowSound(peep);
 	};
@@ -24,29 +22,12 @@ export const AppProvider = ({ children }) => {
 		setShowModal(false);
 	};
 
-	const handleLoadMap = () => {
-		if (loadingStage > 0) return;
-		// setLoadingStage(1);
-	};
-	const handleLoadCharacter = () => {
-		if (loadingStage > 1) return;
-		// setLoadingStage(2);
-	};
-	const handleLoadSound = () => {
-		if (loadingStage > 2) return;
-		// setLoadingStage(3);
-	};
-
 	const handleEnd = (end = true) => {
 		setIsEnd(end);
-	}
+	};
 
-	let isMap = useMemo(() => loadingStage >= 1, [loadingStage]);
-	let isCharacter = useMemo(() => loadingStage >= 2, [loadingStage]);
-	let isSound = useMemo(() => loadingStage >= 3, [loadingStage]);
-
-	const data = { allowSound, END_POS, start, showModal, isMap, isCharacter, isSound, loadingStage, isEnd };
-	const actions = { handleSound, handleStart, handleOpenModal, handleCloseModal, handleLoadMap, handleLoadCharacter, handleLoadSound, handleEnd };
+	const data = { allowSound, END_POS, start, showModal, isEnd };
+	const actions = { handleSound, handleStart, handleOpenModal, handleCloseModal, handleEnd };
 
 	return <AppContext.Provider value={{ data, actions }}>{children}</AppContext.Provider>;
 };

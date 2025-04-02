@@ -1,7 +1,7 @@
 import { Text, useCursor } from "@react-three/drei";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "../context/AppContext";
-import { lerp, damp } from "three/src/math/MathUtils.js";
+import { damp } from "three/src/math/MathUtils.js";
 
 import fontProps from "../helpers/fontProps";
 import { useFrame } from "@react-three/fiber";

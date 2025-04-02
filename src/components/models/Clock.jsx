@@ -27,6 +27,7 @@ const Clock = (props) => {
 		minuteHand.current.rotation.y += delta * (ratio * 10);
 		secondHand.current.rotation.y += delta * (ratio * -30);
 	});
+
 	return (
 		<group ref={group} {...props} dispose={null} position={[-3.5, 3, 5]} scale={1.8}>
 			<mesh geometry={nodes.face.geometry} material={materials.Uhr_2} rotation={[-1.553, 0, 0]} />

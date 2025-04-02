@@ -1,20 +1,9 @@
-import { KeyboardControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
-import { Physics } from "@react-three/rapier";
-import Ecctrl, { EcctrlAnimation } from "../ecctrl/Ecctrl";
-import Floor from "./Floor";
-import Lights from "./Lights";
-import React, { useContext, useMemo, useRef, useState, lazy, Suspense } from "react";
-import Map from "./Map";
-import Sounds from "./Sounds";
-
+import React, { useMemo, lazy, Suspense } from "react";
 import * as THREE from "three";
-import AppContext from "../context/AppContext";
+import { Perf } from "r3f-perf";
 
-// import Clock from "./models/Clock";
 import Instructions from "./Instructions";
 import ExperienceWorld from "./ExperienceWorld";
-
 import Character_JRM from "./models/Character_JRM";
 
 const DollModel = lazy(() => import("./models/DollModel"));
@@ -26,10 +15,6 @@ const Eyes = lazy(() => import("./Eyes"));
 export default function Experience() {
 	const fogColor = useMemo(() => new THREE.Color("#101010"));
 
-	const {
-		data: { isCharacter, isMap, start },
-	} = useContext(AppContext);
-
 	return (
 		<>
 			{/* <Perf position="top-left" deepAnalyze={true} matrixUpdate={true} /> */}
@@ -37,12 +22,12 @@ export default function Experience() {
 
 			<ExperienceWorld />
 
+			<Instructions />
 			<Suspense fallback={null}>
 				<Eyes />
 				<Clock />
 				<Bike />
 
-				<Instructions />
 				<DollModel />
 				<DollLights />
 				<Character_JRM scale={0.5} position={[0, 1.9, 10]} rotate={Math.PI} animation="silly dance" />

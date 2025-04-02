@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.5.3 /Users/rileymcmaster/Documents/Personal/Web/Debris/Sc
 Files: /Users/rileymcmaster/Documents/Personal/Web/Debris/Scan/Oz/oz_4.glb [20.29MB] > /Users/rileymcmaster/Projects/Personal/threejs/ecctrl/oz_4-transformed.glb [568.8KB] (97%)
 */
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useFrame, useGraph } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
@@ -20,7 +20,7 @@ const DollModel = ({ handleEnd, ...props }) => {
 	const { scene, animations } = useGLTF(src, true);
 	const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
 	const { nodes, materials } = useGraph(clone);
-	const { actions, mixer } = useAnimations(animations, group);
+	const { actions } = useAnimations(animations, group);
 
 	useEffect(() => {
 		const action = actions["uncross arms"];

@@ -1,6 +1,5 @@
 import { Leva } from "leva";
-import { Canvas, useLoader } from "@react-three/fiber";
-import * as THREE from "three";
+import { Canvas } from "@react-three/fiber";
 
 import { EcctrlJoystick } from "../ecctrl/EcctrlJoystick";
 import React, { Suspense, useContext, useEffect, useState } from "react";
