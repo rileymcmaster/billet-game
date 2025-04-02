@@ -26,15 +26,15 @@ export const AppProvider = ({ children }) => {
 
 	const handleLoadMap = () => {
 		if (loadingStage > 0) return;
-		setLoadingStage(1);
+		// setLoadingStage(1);
 	};
 	const handleLoadCharacter = () => {
 		if (loadingStage > 1) return;
-		setLoadingStage(2);
+		// setLoadingStage(2);
 	};
 	const handleLoadSound = () => {
 		if (loadingStage > 2) return;
-		setLoadingStage(3);
+		// setLoadingStage(3);
 	};
 
 	const handleEnd = (end = true) => {

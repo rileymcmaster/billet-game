@@ -10,7 +10,7 @@ const IntroPage = () => {
 	const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const {
-		data: { start, isMap },
+		data: { start },
 		actions: { handleSound, handleStart },
 	} = useContext(AppContext);
 	const { progress } = useProgress();

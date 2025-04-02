@@ -99,10 +99,7 @@ const ExperienceWorld = () => {
 							position={[0, 5, 0]}
 							mode="FixedCamera"
 							ref={ecctrlRef}>
-								{isMap && (
-
-									<Character_JRM ref={ref} />
-								)}
+								<Character_JRM ref={ref} />
 						</Ecctrl>
 					</KeyboardControls>
 				
@@ -111,7 +108,7 @@ const ExperienceWorld = () => {
 			<Lights ref={ref} />
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 
-			{allowSound && isCharacter && <Sounds ref={ref} />}
+			{allowSound && <Sounds ref={ref} />}
 		</>
 	);
 };
