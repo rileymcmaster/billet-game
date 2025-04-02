@@ -1,5 +1,5 @@
 import { Physics } from "@react-three/rapier";
-import React, { useContext, useEffect, useRef, lazy } from "react";
+import React, { useContext, useEffect, useRef, lazy, Suspense } from "react";
 import { KeyboardControls } from "@react-three/drei";
 import Ecctrl from "../ecctrl/Ecctrl";
 import { useFrame } from "@react-three/fiber";
@@ -60,7 +60,7 @@ const ExperienceWorld = () => {
 			<Physics debug={false} timeStep={"vary"}>
 				<Floor />
 				<Map />
-	
+				<Suspense>
 					<KeyboardControls map={keyboardMap}>
 						<Ecctrl
 							// debug
@@ -96,13 +96,14 @@ const ExperienceWorld = () => {
 							capsuleHalfHeight={0.29} // Half-height of the charawcter capsule
 							capsuleRadius={capsuleRadius} // Radius of the character capsule
 							characterInitDir={Math.PI}
-							position={[0, 5, 0]}
+							position={[0, 10, 0]}
 							mode="FixedCamera"
-							ref={ecctrlRef}>
-								<Character_JRM ref={ref} />
+							ref={ecctrlRef}
+							ccd>
+							<Character_JRM ref={ref} />
 						</Ecctrl>
 					</KeyboardControls>
-				
+				</Suspense>
 			</Physics>
 
 			<Lights ref={ref} />
