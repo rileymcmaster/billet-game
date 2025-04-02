@@ -4,7 +4,6 @@ import React, { forwardRef, Suspense, useContext, useEffect, useMemo } from "rea
 import * as THREE from "three";
 
 import AppContext from "../context/AppContext";
-import Floor from "./Floor";
 
 const roomURL = "/assets/models/basement_3_room_1-transformed.glb";
 const ceilingURL = "/assets/models/basement_3_ceiling_1-transformed.glb";
@@ -29,25 +28,22 @@ const Map = (props, ref) => {
 	};
 	return (
 		<Suspense fallback={null}>
-			<group>
-				<group ref={ref} scale={3} position={[0, -0.9, 8]} dispose={null}>
-					<group>
-						<mesh geometry={ceilingNodes.basement_ceiling.geometry} material={ceilingMaterials["Material_0.013"]} scale={0.96} />
-					</group>
-					<group>
-						<mesh geometry={mirrorNodes.mirror_room002.geometry} material={mirrorMaterials["Material_0.003"]} position={[0.746, -0.095, -2.166]} />
-					</group>
-					<mesh position={[0, 1, -5]}>
-						<planeGeometry args={[4.5, 2, 1]} />
-						<meshBasicMaterial color={fogColor} />
-					</mesh>
-					<RigidBody receiveShadow type="fixed" ccd position={[0, 0, 0]} colliders="trimesh">
-						<group onClick={handleClick} onPointerOver={handleClick} dispose={null}>
-							<primitive object={basement} />
-						</group>
-					</RigidBody>
+			<group ref={ref} scale={3} position={[0, -0.9, 8]} dispose={null}>
+				<group>
+					<mesh geometry={ceilingNodes.basement_ceiling.geometry} material={ceilingMaterials["Material_0.013"]} scale={0.96} />
 				</group>
-				<Floor />
+				<group>
+					<mesh geometry={mirrorNodes.mirror_room002.geometry} material={mirrorMaterials["Material_0.003"]} position={[0.746, -0.095, -2.166]} />
+				</group>
+				<mesh position={[0, 1, -5]}>
+					<planeGeometry args={[4.5, 2, 1]} />
+					<meshBasicMaterial color={fogColor} />
+				</mesh>
+				<RigidBody receiveShadow type="fixed" ccd position={[0, 0, 0]} colliders="trimesh">
+					<group onClick={handleClick} onPointerOver={handleClick} dispose={null}>
+						<primitive object={basement} />
+					</group>
+				</RigidBody>
 			</group>
 		</Suspense>
 	);
