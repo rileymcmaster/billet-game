@@ -58,12 +58,12 @@ const IntroPage = () => {
 				</motion.div>
 
 				{/* first page */}
-				{/* <Overlay show={!start} delay={0.2} /> */}
+				<Overlay show={!start} delay={0.2} />
 				{/* menu */}
 
 				<AnimatePresence>
 					{!start && (
-						<motion.div animate={{ opacity: 1 }} initial={{opacity: 1}} exit={{ opacity: 0 }} className="intro__content">
+						<motion.div animate={{ opacity: 1 }} initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="intro__content">
 							<div className="intro__content__container">
 								<p>Welcome to the basement</p>
 								<p>An interactive game where it is your goal to find the new Billet t-shirt. Best experienced with sound on.</p>
@@ -82,7 +82,8 @@ const IntroPage = () => {
 									<button className={`button ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleAcceptSound}>
 										<motion.span className="loading" style={{ width: `${progress}%` }}></motion.span>
 										<span className="message--default">ENTER WITH SOUND</span>
-										<span className="message--loading">loading...</span>
+										{/* <span className="message--loading">loading</span> */}
+										<span className="message--loading loader"></span>
 									</button>
 
 									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} onClick={handleMute}>
