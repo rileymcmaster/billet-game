@@ -8,9 +8,9 @@ import AppContext from "../context/AppContext";
 import Character_JRM from "./models/Character_JRM";
 import Map from "./Map";
 import Floor from "./Floor";
+import Sounds from "./Sounds";
 const Lights = lazy(() => import("./Lights"));
 const ClickTarget = lazy(() => import("./ClickTarget"));
-const Sounds = lazy(() => import("./Sounds"));
 
 const keyboardMap = [
 	{ name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -24,7 +24,6 @@ const keyboardMap = [
 const ExperienceWorld = () => {
 	const ref = useRef(null);
 	const ecctrlRef = useRef(null);
-	const mapRef = useRef();
 	let capsuleHeight = 0.7;
 	let capsuleRadius = 0.3;
 
@@ -104,7 +103,6 @@ const ExperienceWorld = () => {
 						</Ecctrl>
 					</KeyboardControls>
 				)}
-				<Map ref={mapRef} />
 			</Physics>
 
 			<Lights ref={ref} />

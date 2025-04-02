@@ -9,7 +9,7 @@ const roomURL = "/assets/models/basement_3_room_1-transformed.glb";
 const ceilingURL = "/assets/models/basement_3_ceiling_1-transformed.glb";
 const mirrorURL = "/assets/models/basement_3_mirror_1-transformed.glb";
 
-const Map = (props, ref) => {
+const Map = (props) => {
 	const [{ nodes: roomNodes }, { nodes: ceilingNodes, materials: ceilingMaterials }, { nodes: mirrorNodes, materials: mirrorMaterials }] = useGLTF([roomURL, ceilingURL, mirrorURL]);
 	const basement = roomNodes["basement_room001"];
 	const fogColor = useMemo(() => new THREE.Color("#101010"));
@@ -28,7 +28,7 @@ const Map = (props, ref) => {
 	};
 	return (
 		<Suspense fallback={null}>
-			<group ref={ref} scale={3} position={[0, -0.9, 8]} dispose={null}>
+			<group scale={3} position={[0, -0.9, 8]} dispose={null}>
 				<group>
 					<mesh geometry={ceilingNodes.basement_ceiling.geometry} material={ceilingMaterials["Material_0.013"]} scale={0.96} />
 				</group>
@@ -50,4 +50,4 @@ const Map = (props, ref) => {
 };
 useGLTF.preload([roomURL, ceilingURL, mirrorURL]);
 
-export default forwardRef(Map);
+export default Map;
