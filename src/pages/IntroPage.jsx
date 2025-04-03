@@ -46,7 +46,7 @@ const IntroPage = () => {
 
 	return (
 		<>
-			<Menu show={start && isMenuOpen} onClose={handleCloseMenu} />
+			{/* <Menu show={start && isMenuOpen} onClose={handleCloseMenu} /> */}
 			<div className="intro">
 				<motion.div
 					className="title-container"
@@ -58,7 +58,7 @@ const IntroPage = () => {
 				</motion.div>
 
 				{/* first page */}
-				<Overlay show={!start} delay={0.2} />
+				{/* <Overlay show={!start} delay={0.2} /> */}
 				{/* menu */}
 
 				<AnimatePresence>

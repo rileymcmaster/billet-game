@@ -31,6 +31,7 @@ const Game = () => {
 			{/* <Leva collapsed /> */}
 			{start && <EcctrlJoystickControls />}
 			<IntroPage />
+			{/* <Modal /> */}
 			<Canvas
 				style={{ width: "100%", position: "absolute", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
 				camera={{
@@ -40,8 +41,6 @@ const Game = () => {
 				}}>
 				<Experience />
 			</Canvas>
-
-			<Modal />
 		</>
 	);
 };
