@@ -109,7 +109,7 @@ const ExperienceWorld = () => {
 			<Lights />
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 
-			{allowSound && <Sounds ref={ref} />}
+			{/* {allowSound && <Sounds ref={ref} />} */}
 		</>
 	);
 };
