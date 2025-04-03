@@ -46,7 +46,7 @@ const IntroPage = () => {
 
 	return (
 		<>
-			{/* <Menu show={start && isMenuOpen} onClose={handleCloseMenu} /> */}
+			<Menu show={start && isMenuOpen} onClose={handleCloseMenu} />
 			<div className="intro">
 				<motion.div
 					className="title-container"
@@ -58,7 +58,7 @@ const IntroPage = () => {
 				</motion.div>
 
 				{/* first page */}
-				{/* <Overlay show={!start} delay={0.2} /> */}
+				<Overlay show={!start} delay={0.2} />
 				{/* menu */}
 
 				<AnimatePresence>
@@ -82,8 +82,7 @@ const IntroPage = () => {
 									<button className={`button ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleAcceptSound}>
 										<motion.span className="loading" style={{ width: `${progress}%` }}></motion.span>
 										<span className="message--default">ENTER WITH SOUND</span>
-										{/* <span className="message--loading">loading</span> */}
-										<span className="message--loading loader"></span>
+										<span className="message--loading">loading</span>
 									</button>
 
 									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} onClick={handleMute}>

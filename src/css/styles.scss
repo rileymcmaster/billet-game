@@ -325,12 +325,8 @@ button {
 			opacity: 0;
 		}
 		&--loading {
-			top: 0;
-			width: 15px;
+			color: $color-white;
 			mix-blend-mode: difference;
-			&::before {
-				animation-duration: 4s;
-			}
 		}
 	}
 	&.loaded {

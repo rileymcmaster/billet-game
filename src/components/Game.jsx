@@ -8,7 +8,7 @@ import IntroPage from "../pages/IntroPage";
 import AppContext from "../context/AppContext";
 import Modal from "../pages/Modal";
 
-const EcctrlJoystickControls = (props) => {
+const EcctrlJoystickControls = ({ show }) => {
 	const [isTouchScreen, setIsTouchScreen] = useState(false);
 
 	useEffect(() => {
@@ -19,7 +19,7 @@ const EcctrlJoystickControls = (props) => {
 			setIsTouchScreen(false);
 		}
 	}, []);
-	return <>{isTouchScreen && <EcctrlJoystick joystickRunSensitivity={0.2} buttonNumber={1} />}</>;
+	return <>{isTouchScreen && show && <EcctrlJoystick joystickRunSensitivity={0.2} buttonNumber={1} />}</>;
 };
 
 const Game = () => {
@@ -29,9 +29,9 @@ const Game = () => {
 	return (
 		<>
 			{/* <Leva collapsed /> */}
-			{start && <EcctrlJoystickControls />}
+			<EcctrlJoystickControls show={start} />
 			<IntroPage />
-			{/* <Modal /> */}
+			<Modal />
 			<Canvas
 				style={{ width: "100%", position: "absolute", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
 				camera={{
