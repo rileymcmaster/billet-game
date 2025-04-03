@@ -16,12 +16,6 @@ const ClickTarget = (props) => {
 	const [hover, setHover] = useState(false);
 	useCursor(hover);
 
-	useEffect(() => {
-		if (show) {
-			setIsActive(true);
-		}
-	}, [show]);
-
 	const {
 		actions: { handleOpenModal },
 	} = useContext(AppContext);
@@ -39,7 +33,12 @@ const ClickTarget = (props) => {
 		handleOpenModal();
 	};
 
-	useFrame(() => {
+	useFrame(({ camera }) => {
+		const endPos = camera.position.z >= 16;
+
+		if (!isActive && endPos) {
+			setIsActive(true);
+		}
 		if (hasBeenClicked) {
 			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 0, 0.5, 1);
 			return;
@@ -52,7 +51,7 @@ const ClickTarget = (props) => {
 	return (
 		<group {...props} dispose={null}>
 			<Text ref={textRef} {...fontProps} color={"#242424"} fillOpacity={0} position={[0, -1.8, -0.22]} rotation-y={Math.PI}>
-				(click the shirt)
+				click the shirt
 			</Text>
 			{isActive && (
 				<mesh ref={ref} onClick={handleClick} onPointerOver={handlePointerIn} onPointerOut={handlePointerOut}>

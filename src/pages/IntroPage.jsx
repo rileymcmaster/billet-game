@@ -59,7 +59,6 @@ const IntroPage = () => {
 
 				{/* first page */}
 				<Overlay show={!start} delay={0.2} />
-				{/* menu */}
 
 				<AnimatePresence>
 					{!start && (

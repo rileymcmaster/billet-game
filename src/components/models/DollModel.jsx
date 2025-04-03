@@ -77,4 +77,4 @@ const DollModel = ({ handleEnd, ...props }) => {
 };
 
 export default DollModel;
-// useGLTF.preload(src);
+useGLTF.preload(src);
