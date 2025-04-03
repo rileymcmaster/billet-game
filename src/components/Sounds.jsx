@@ -1,9 +1,10 @@
-import React, { forwardRef, useEffect, useRef } from "react";
+import React, { forwardRef, useContext, useEffect, useRef } from "react";
 import SoundsSpot from "./SoundsSpot";
 import { useFrame } from "@react-three/fiber";
 
 import { damp } from "three/src/math/MathUtils.js";
 import { calculateFloat } from "../helpers/mathHelper";
+import AppContext from "../context/AppContext";
 
 const audioSpots = [
 	{
@@ -75,10 +76,15 @@ const audioSpots = [
 const Sounds = ({}, ref) => {
 	const allSpots = useRef([]);
 
+	const {
+		data: { allowSound },
+	} = useContext(AppContext);
+
 	useEffect(() => {
 		if (!ref || !ref.current) return;
 
 		if (allSpots.current.length <= 0) return;
+		if (!allowSound) return;
 
 		setTimeout(() => {
 			allSpots.current.forEach((spot) => {

@@ -28,7 +28,7 @@ const ExperienceWorld = () => {
 	let capsuleRadius = 0.3;
 
 	const {
-		data: { allowSound, isEnd },
+		data: { isEnd },
 		actions: { handleEnd },
 	} = useContext(AppContext);
 
@@ -109,7 +109,7 @@ const ExperienceWorld = () => {
 			<Lights />
 			<ClickTarget show={isEnd} position={[0, 4, 23]} />
 
-			{/* {allowSound && <Sounds ref={ref} />} */}
+			<Sounds ref={ref} />
 		</>
 	);
 };
