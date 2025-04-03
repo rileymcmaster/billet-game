@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import AppContext from "../context/AppContext";
 import Overlay from "../components/Overlay";
 
-// TODO - update with proper link
-const href = "https://billet.bandcamp.com/album/debris";
+const href = "https://billet.bigcartel.com";
 
 const Modal = ({}) => {
 	const {
@@ -34,12 +33,11 @@ const Modal = ({}) => {
 						<div className="menu__content">
 							<p>Congrats! You've done it!</p>
 							<a href={href} target="_blank">
-								{/* Open in new tab */}
-								**TODO - this will be a link to buy the tshirt
+								Open in new tab
 							</a>
 							<div className="iframe-wrapper">
 								<div className="loader"></div>
-								<iframe src="https://billet.bandcamp.com/album/debris" />
+								<iframe src={href} />
 							</div>
 						</div>
 					</motion.div>
