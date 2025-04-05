@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import AppContext from "../context/AppContext";
 import Overlay from "../components/Overlay";
 
-const href = "https://billet.bigcartel.com";
+const embedSrc = "https://billet.bandcamp.com/merch/melted-amps-t-shirt";
 
 const Modal = ({}) => {
 	const {
@@ -32,12 +32,12 @@ const Modal = ({}) => {
 						</button>
 						<div className="menu__content">
 							<p>Congrats! You've done it!</p>
-							<a href={href} target="_blank">
+							<a href={embedSrc} target="_blank">
 								Open in new tab
 							</a>
 							<div className="iframe-wrapper">
 								<div className="loader"></div>
-								<iframe src={href} />
+								<iframe src={embedSrc} />
 							</div>
 						</div>
 					</motion.div>
