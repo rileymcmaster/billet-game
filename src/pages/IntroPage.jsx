@@ -84,7 +84,7 @@ const IntroPage = () => {
 										<span className="message--loading">loading</span>
 									</button>
 
-									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} onClick={handleMute}>
+									<button className={`button--alt ${isLoaded ? "loaded" : ""}`} disabled={!isLoaded} onClick={handleMute}>
 										without sound
 									</button>
 								</div>
