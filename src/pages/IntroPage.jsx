@@ -65,7 +65,7 @@ const IntroPage = () => {
 						<motion.div animate={{ opacity: 1 }} initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="intro__content">
 							<div className="intro__content__container">
 								<p>Welcome to the basement</p>
-								<p>An interactive game where it is your goal to find the new Billet t-shirt. Best experienced with sound on.</p>
+								<p>This is the "All Eyes" interactive music video where it is your goal to find the new Billet t-shirt. Best experienced with sound on.</p>
 
 								{isDesktop ? (
 									<p>

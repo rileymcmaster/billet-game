@@ -7,7 +7,7 @@ const SimpleContent = () => {
 		<section>
 			<h1>Billet</h1>
 			<h3>
-				<Link to="/game">Play the "All Eyes" basement game</Link>
+				<Link to="/game">Play the "All Eyes" interactive music video</Link>
 			</h3>
 			<h2>The debut album Debris is out now</h2>
 			<div className="link-wrapper">
