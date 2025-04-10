@@ -451,3 +451,41 @@ button {
 	font-size: 0.7rem;
 	z-index: 1;
 }
+
+.icon,
+%icon {
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	position: relative;
+	cursor: pointer;
+	transition: scale 0.15s ease;
+
+	&:hover {
+		scale: 1.1;
+	}
+
+	&::after {
+		content: "";
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: $color-moss;
+		mask-position: center center;
+		mask-size: 100% 100%;
+		mask-repeat: no-repeat;
+	}
+	&__speaker {
+		@extend %icon;
+		&::after {
+			mask-image: url("/assets/icon-speaker.svg");
+		}
+	}
+	&__speaker--mute {
+		@extend %icon;
+		&::after {
+			mask-image: url("/assets/icon-speaker-mute.svg");
+		}
+	}
+}

@@ -14,7 +14,7 @@ const DollLights = () => {
 			scaleRatioTally = scaleRatioMax;
 		}
 		if (scaleRatioMax >= 0) {
-			pointLight1.current.intensity = THREE.MathUtils.lerp(pointLight1.current.intensity, scaleRatioMax * 16, 0.001);
+			pointLight1.current.intensity = THREE.MathUtils.lerp(pointLight1.current.intensity, scaleRatioMax * 10, 0.001);
 		}
 
 		return null;

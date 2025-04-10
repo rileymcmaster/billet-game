@@ -1,4 +1,4 @@
-import React, { useMemo, lazy, Suspense } from "react";
+import React, { useMemo, lazy } from "react";
 import * as THREE from "three";
 import { Perf } from "r3f-perf";
 

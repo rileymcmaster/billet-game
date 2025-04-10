@@ -18,16 +18,27 @@ const Sounds = ({ ecctrlRef }, ref) => {
 		if (!ref || !ref.current) return;
 
 		if (allSpots.current.length <= 0) return;
-		if (!allowSound) return;
 
-		setTimeout(() => {
+		if (!allowSound) {
 			allSpots.current.forEach((spot) => {
-				ref.current.add(spot.element.listener);
 				spot.element.stop();
-				spot.element.play();
 			});
-		}, 1000);
-	}, [allSpots.current, ref.current]);
+		}
+
+		if (allowSound) {
+			setTimeout(() => {
+				allSpots.current.forEach((spot) => {
+					ref.current.add(spot.element.listener);
+					spot.element.stop();
+					spot.element.play();
+				});
+			}, 1000);
+		}
+		return () =>
+			allSpots.current.forEach((spot) => {
+				spot.element.stop();
+			});
+	}, [allSpots.current, ref.current, allowSound]);
 
 	useFrame(() => {
 		if (!ref || !ref.current) return;

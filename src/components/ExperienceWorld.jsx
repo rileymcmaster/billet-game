@@ -107,7 +107,7 @@ const ExperienceWorld = () => {
 			</Physics>
 
 			<Lights />
-			<ClickTarget show={isEnd} position={[0, 4, 23]} />
+			<ClickTarget position={[0, 4, 23]} />
 
 			<Sounds ecctrlRef={ecctrlRef} ref={ref} />
 		</>

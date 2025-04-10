@@ -31,9 +31,9 @@ const Modal = ({}) => {
 							X
 						</button>
 						<div className="menu__content">
-							<p>Congrats! You've done it!</p>
+							<p>Congrats! You've found the prize! Buy the exclusive Billet shirt now!</p>
 							<a href={embedSrc} target="_blank">
-								Open in new tab
+								open in new tab
 							</a>
 							<div className="iframe-wrapper">
 								<div className="loader"></div>

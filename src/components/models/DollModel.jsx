@@ -36,9 +36,9 @@ const DollModel = ({ handleEnd, ...props }) => {
 	let scaleRatioTally = 0;
 
 	useFrame(({ camera }) => {
-		const isAtEnd = camera.position.z > 16;
+		const isAtEnd = camera.position.z > 18;
 
-		const { ratio: spinRatio, ratioMax: spinRatioMax } = calculateFloat({ start: 10, end: 14, value: camera.position.z });
+		const { ratio: spinRatio, ratioMax: spinRatioMax } = calculateFloat({ start: 12, end: 16, value: camera.position.z });
 		if (spinRatioMax >= 0 && spinRatioTally < spinRatioMax) {
 			spinRatioTally = spinRatioMax;
 		}
@@ -47,7 +47,7 @@ const DollModel = ({ handleEnd, ...props }) => {
 			group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, spinRatioTally * Math.PI, 0.05, 2);
 		}
 
-		const { ratio: scaleRatio, ratioMax: scaleRatioMax } = calculateFloat({ start: 12, end: 15, value: camera.position.z });
+		const { ratio: scaleRatio, ratioMax: scaleRatioMax } = calculateFloat({ start: 12, end: 17, value: camera.position.z });
 		if (scaleRatioMax >= 0 && scaleRatioTally < scaleRatioMax) {
 			scaleRatioTally = scaleRatioMax;
 		}

@@ -1,13 +1,12 @@
 import { Text, useCursor } from "@react-three/drei";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import AppContext from "../context/AppContext";
-import { damp } from "three/src/math/MathUtils.js";
+import { lerp } from "three/src/math/MathUtils.js";
 
 import fontProps from "../helpers/fontProps";
 import { useFrame } from "@react-three/fiber";
 
 const ClickTarget = (props) => {
-	const { show } = props;
 	const textRef = useRef();
 	const [isActive, setIsActive] = useState(false);
 	const [hasBeenClicked, setHasBeenClicked] = useState(false);
@@ -34,17 +33,17 @@ const ClickTarget = (props) => {
 	};
 
 	useFrame(({ camera }) => {
-		const endPos = camera.position.z >= 16;
+		const endPos = camera.position.z >= 18;
 
 		if (!isActive && endPos) {
 			setIsActive(true);
 		}
 		if (hasBeenClicked) {
-			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 0, 0.5, 1);
+			textRef.current.fillOpacity = lerp(textRef.current.fillOpacity, 0, 0.5, 1);
 			return;
 		}
-		if (show && textRef.current) {
-			textRef.current.fillOpacity = damp(textRef.current.fillOpacity, 1, 0.005, 10);
+		if (endPos && textRef.current) {
+			textRef.current.fillOpacity = lerp(textRef.current.fillOpacity, 1, 0.005);
 		}
 	});
 
