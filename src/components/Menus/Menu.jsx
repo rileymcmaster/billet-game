@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import React from "react";
 import Overlay from "./Overlay";
-import { links } from "../data";
+import { links } from "../../data";
 
 const Menu = ({ show, onClose }) => {
 	return (

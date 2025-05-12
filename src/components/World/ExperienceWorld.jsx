@@ -1,14 +1,14 @@
 import { Physics } from "@react-three/rapier";
 import React, { useContext, useEffect, useRef, lazy, Suspense } from "react";
 import { KeyboardControls } from "@react-three/drei";
-import Ecctrl from "../ecctrl/Ecctrl";
+import Ecctrl from "../../ecctrl/Ecctrl";
 import { useFrame } from "@react-three/fiber";
-import AppContext from "../context/AppContext";
+import AppContext from "../../context/AppContext";
 
-import Character_JRM from "./models/Character_JRM";
+import Character_JRM from "../models/Character_JRM";
 import Map from "./Map";
 import Floor from "./Floor";
-import Sounds from "./Sounds";
+import Sounds from "../Sounds/Sounds";
 const Lights = lazy(() => import("./Lights"));
 const ClickTarget = lazy(() => import("./ClickTarget"));
 

@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
 import * as THREE from "three";
-import { calculateFloat } from "../helpers/mathHelper";
+import { calculateFloat } from "../../helpers/mathHelper";
 
 const DollLights = () => {
 	const target = useRef();

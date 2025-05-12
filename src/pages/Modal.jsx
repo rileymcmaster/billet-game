@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import AppContext from "../context/AppContext";
-import Overlay from "../components/Overlay";
+import Overlay from "../components/Menus/Overlay";
 
 const embedSrc = "https://billet.bandcamp.com/merch/melted-amps-t-shirt";
 
@@ -31,7 +31,7 @@ const Modal = ({}) => {
 							X
 						</button>
 						<div className="menu__content">
-							<p>Congrats! You've found the prize! Buy the exclusive Billet shirt now!</p>
+							<p>Congrats you've found the prize! Buy the exclusive Billet shirt now</p>
 							<a href={embedSrc} target="_blank">
 								open in new tab
 							</a>

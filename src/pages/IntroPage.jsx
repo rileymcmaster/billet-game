@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../context/AppContext";
 import { AnimatePresence, motion } from "motion/react";
 import { useMediaQuery } from "react-responsive";
-import Overlay from "../components/Overlay";
-import Menu from "../components/Menu";
+import Overlay from "../components/Menus/Overlay";
+import Menu from "../components/Menus/Menu";
 
 const IntroPage = () => {
 	const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });

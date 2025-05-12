@@ -7,7 +7,7 @@ import Experience from "./Experience";
 import IntroPage from "../pages/IntroPage";
 import AppContext from "../context/AppContext";
 import Modal from "../pages/Modal";
-import Keys from "./Keys";
+import Keys from "./Menus/Keys";
 
 const EcctrlJoystickControls = ({ show }) => {
 	return <>{show && <EcctrlJoystick joystickRunSensitivity={0.2} buttonNumber={1} />}</>;

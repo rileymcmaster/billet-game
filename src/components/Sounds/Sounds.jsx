@@ -3,9 +3,9 @@ import SoundsSpot from "./SoundsSpot";
 import { useFrame } from "@react-three/fiber";
 
 import { damp } from "three/src/math/MathUtils.js";
-import { calculateFloat } from "../helpers/mathHelper";
-import AppContext from "../context/AppContext";
-import audioSpots from "../helpers/audioSpots";
+import { calculateFloat } from "../../helpers/mathHelper";
+import AppContext from "../../context/AppContext";
+import audioSpots from "../../helpers/audioSpots";
 
 const Sounds = ({ ecctrlRef }, ref) => {
 	const allSpots = useRef([]);
