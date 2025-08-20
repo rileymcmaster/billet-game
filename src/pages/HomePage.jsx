@@ -2,7 +2,7 @@ import React from "react";
 import { links } from "../data";
 import { Link } from "react-router-dom";
 
-const SimpleContent = () => {
+const HomePage = () => {
 	return (
 		<section>
 			<h1>Billet</h1>
@@ -36,4 +36,4 @@ const SimpleContent = () => {
 	);
 };
 
-export default SimpleContent;
+export default HomePage;

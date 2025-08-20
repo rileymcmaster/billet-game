@@ -1,0 +1,126 @@
+@use "variables" as *;
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	font-family: doner, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+
+	color: $color-moss;
+	background-color: $color-black-bg;
+	font-size: calc(20px + 6 * ((100vw - 320px) / 680));
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	letter-spacing: 2px;
+}
+
+section {
+	background-color: $color-black;
+	min-height: 100vh;
+}
+
+ul,
+ol,
+li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+*::selection {
+	color: $color-black;
+	background: $color-blue;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: 4px;
+	line-height: normal;
+	font-weight: 400;
+	color: $color-moss;
+}
+
+h3 {
+	margin-block-end: 32px;
+	a {
+		background: $color-blue;
+		color: $color-black;
+		transition: color 0.2s ease;
+		&:hover {
+			color: $color-white;
+		}
+	}
+}
+
+h1 {
+	text-transform: uppercase;
+	font-family: lemon-wide;
+	font-size: clamp(4.625rem, 20vw + 1rem, 17.5rem);
+
+	&.small {
+		font-size: clamp(3.625rem, 12vw + 1rem, 10.5rem);
+	}
+}
+
+h1.alt,
+%h1-alt {
+	text-transform: uppercase;
+	font-family: lemon-wide;
+	font-size: clamp(2.625rem, 12vw + 1rem, 12.5rem);
+	letter-spacing: 4px;
+	line-height: normal;
+	font-weight: 400;
+
+	color: $color-moss;
+}
+
+h2 {
+	font-family: lemon;
+	margin-block-end: 20px;
+}
+
+.small-text {
+	font-size: 0.5rem;
+
+	a {
+		color: $color-moss;
+		&:hover,
+		&:focus-visible {
+			color: $color-blue;
+			background: transparent;
+		}
+	}
+}
+
+.link-wrapper {
+	display: flex;
+	max-width: 100%;
+	flex-wrap: wrap;
+}
+
+a {
+	color: #459db0;
+	text-decoration: none;
+	transition: all 0.1s ease;
+	pointer-events: all;
+
+	&:hover {
+		background: #459db0;
+		color: #242424;
+	}
+}
+
+h1 a {
+	color: $color-moss;
+}
