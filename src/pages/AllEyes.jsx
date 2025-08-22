@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { AppProvider } from "../context/AppContext";
 import Game from "../components/Game";
 

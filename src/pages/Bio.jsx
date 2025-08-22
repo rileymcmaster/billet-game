@@ -48,7 +48,7 @@ const Bio = () => {
 					</ul>
 				</div>
 				<div className="bio__details__image-wrapper">
-					<img src={imageMain} alt="freak standing in a warped reality"></img>
+					<img src={imageMain} height="265" alt="freak standing in a warped reality"></img>
 				</div>
 			</div>
 

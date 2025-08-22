@@ -65,7 +65,7 @@ h3 {
 
 h1 {
 	text-transform: uppercase;
-	font-family: lemon-wide;
+	font-family: $headings-font-family;
 	font-size: clamp(4.625rem, 20vw + 1rem, 17.5rem);
 
 	&.small {
@@ -76,7 +76,7 @@ h1 {
 h1.alt,
 %h1-alt {
 	text-transform: uppercase;
-	font-family: lemon-wide;
+	font-family: $headings-font-family;
 	font-size: clamp(2.625rem, 12vw + 1rem, 12.5rem);
 	letter-spacing: 4px;
 	line-height: normal;
@@ -86,7 +86,7 @@ h1.alt,
 }
 
 h2 {
-	font-family: lemon;
+	font-family: $sub-headings-font-family;
 	margin-block-end: 20px;
 }
 
@@ -110,14 +110,14 @@ h2 {
 }
 
 a {
-	color: #459db0;
+	color: $color-blue;
 	text-decoration: none;
 	transition: all 0.1s ease;
 	pointer-events: all;
 
 	&:hover {
-		background: #459db0;
-		color: #242424;
+		background: $color-blue;
+		color: $color-black;
 	}
 }
 
