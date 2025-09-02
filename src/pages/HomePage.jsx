@@ -11,6 +11,7 @@ const HomePage = () => {
 			</h3>
 			<h2>The debut album Debris is out now</h2>
 			<div className="link-wrapper">
+				<Link to="/bio">•bio• </Link>
 				{links.map(({ title, href }) => (
 					<a key={title} href={href}>
 						{title}
