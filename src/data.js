@@ -16,7 +16,7 @@ export const bioLinks = [
 ];
 
 export const biography = [
-	"Billet is the solo project of Montreal's Riley McMaster, singer and guitarist from Monsoon Moon (2017-2023). Fronting Moonsoon Moon, Riley played 30+ shows across Canada: in festivals including Big Winter Classic (Calgary) and Music Waste (Vancouver) and opening for touring acts such as Shannon Shaw and Remember Sports. ",
+	"Billet is the solo project of Montreal's Riley McMaster, singer and guitarist from Monsoon Moon (2017-2023). Fronting Monsoon Moon, Riley played 30+ shows across Canada: in festivals including Big Winter Classic (Calgary) and Music Waste (Vancouver) and opening for touring acts such as Shannon Shaw and Remember Sports. ",
 
 	"Billet is the result of wanting to experiment with more electronics in order to take straight-forward punk songs and steer them into the realm of electronica and hip-hop-beats while maintaining the punk energy and ethos. It is stick-in-your-head melodies, groove-infested, hook-laced and cathartic. Songs filled to the brim with paranoia and anxiety about technology, personal connection and searching for any semblance of reality. ",
 
