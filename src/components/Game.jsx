@@ -30,19 +30,22 @@ const Game = () => {
 	return (
 		<div className="game-wrapper">
 			{/* <Leva collapsed /> */}
-			<EcctrlJoystickControls show={start && isTouchScreen} />
 			<IntroPage />
-			<Modal />
-			<Keys show={start && !isTouchScreen} />
-			<Canvas
-				style={{ width: "100%", position: "absolute", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
-				camera={{
-					fov: 75,
-					near: 0.1,
-					far: 55,
-				}}>
-				<Experience />
-			</Canvas>
+			<Suspense>
+				<EcctrlJoystickControls show={start && isTouchScreen} />
+
+				<Modal />
+				<Keys show={start && !isTouchScreen} />
+				<Canvas
+					style={{ width: "100%", position: "absolute", maxWidth: "1500px", marginInline: "auto", maxHeight: "1200px" }}
+					camera={{
+						fov: 75,
+						near: 0.1,
+						far: 55,
+					}}>
+					<Experience />
+				</Canvas>
+			</Suspense>
 		</div>
 	);
 };
