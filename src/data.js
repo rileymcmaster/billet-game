@@ -26,5 +26,5 @@ export const biography = [
 
 	"Billet released its debut album, Debris, at the end of 2024. More recordings are underway in 2025 with a single slated for release in the fall.",
 
-	"For fans of: Jay Reatard, Ty Segall, Osees, Suicide, Devo, Smirk",
+	"For fans of: Jay Reatard, Ty Segall, Osees, Suicide, Powerplant, Devo, Smirk",
 ];
