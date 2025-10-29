@@ -44,17 +44,14 @@ const Sounds = ({ ecctrlRef }, ref) => {
 		if (!ref || !ref.current || !allowSound) return;
 
 		if (allSpots.current.length <= 0) return;
-		console.log("sounds", allSpots, ecctrlRef);
 
 		const isDefault = allSpots.current[0].element.getPlaybackRate();
 		const { ratioMax } = calculateFloat({ start: 14, end: 20, value: ecctrlRef?.current?.translation().z });
 		if (ratioMax > 0) {
-			console.log("is ratio max", { allowSound });
 			allSpots.current.forEach((spot) => {
 				spot.element.setPlaybackRate(damp(spot.element.playbackRate, 1 - ratioMax / 4, 0.1, 2));
 			});
 		} else if (isDefault !== 1) {
-			console.log("is not default 1");
 			allSpots.current.forEach((spot) => {
 				spot.element.setPlaybackRate(damp(spot.element.playbackRate, 1, 0.25, 2));
 			});
