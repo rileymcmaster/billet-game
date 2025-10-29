@@ -4,6 +4,7 @@ import VideoEmbed from "../components/VideoEmbed";
 const imageMain = "/assets/billet-headshot.webp";
 const sosVidSrc = "https://www.youtube.com/embed/gVCaYuzIoCM?si=qHjP2egGF7-s94aN";
 const fortunesVidSrc = "https://www.youtube.com/embed/m_gxWheaDyE?si=R8C35a9y3g0AqRCB";
+const cctvVidSrc = "https://www.youtube.com/embed/peogIPYJb3I?si=b_5UiqGcuJv6ZH8W";
 const allEyesVidSrc = "https://www.youtube.com/embed/yHOF9k8JdWA?si=hIYNG6NuhpwlIP0t";
 const depressionVidSrc = "https://www.youtube.com/embed/MBveYe6H38c?si=awHj61YzX47Ipe6C";
 import { bioLinks, biography } from "../data";
@@ -58,6 +59,10 @@ const Bio = () => {
 					<li>
 						<VideoEmbed src={fortunesVidSrc} />
 						<p>Fortunes</p>
+					</li>
+					<li>
+						<VideoEmbed src={cctvVidSrc} />
+						<p>CCTV le quartier</p>
 					</li>
 					<li>
 						<VideoEmbed src={allEyesVidSrc} />
