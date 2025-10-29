@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect, useRef } from "react";
+import React, { forwardRef, Suspense, useContext, useEffect, useRef } from "react";
 import SoundsSpot from "./SoundsSpot";
 import { useFrame } from "@react-three/fiber";
 
@@ -41,17 +41,20 @@ const Sounds = ({ ecctrlRef }, ref) => {
 	}, [allSpots.current, ref.current, allowSound]);
 
 	useFrame(() => {
-		if (!ref || !ref.current) return;
+		if (!ref || !ref.current || !allowSound) return;
 
 		if (allSpots.current.length <= 0) return;
+		console.log("sounds", allSpots, ecctrlRef);
 
 		const isDefault = allSpots.current[0].element.getPlaybackRate();
 		const { ratioMax } = calculateFloat({ start: 14, end: 20, value: ecctrlRef?.current?.translation().z });
 		if (ratioMax > 0) {
+			console.log("is ratio max", { allowSound });
 			allSpots.current.forEach((spot) => {
 				spot.element.setPlaybackRate(damp(spot.element.playbackRate, 1 - ratioMax / 4, 0.1, 2));
 			});
 		} else if (isDefault !== 1) {
+			console.log("is not default 1");
 			allSpots.current.forEach((spot) => {
 				spot.element.setPlaybackRate(damp(spot.element.playbackRate, 1, 0.25, 2));
 			});
@@ -60,11 +63,13 @@ const Sounds = ({ ecctrlRef }, ref) => {
 	});
 
 	return (
-		<group dispose={null}>
-			{audioSpots.map((spot, i) => {
-				return <SoundsSpot spot={spot} key={`${spot.file}-${i}`} ref={(element) => (allSpots.current[i] = { element, spot })} />;
-			})}
-		</group>
+		<Suspense>
+			<group dispose={null}>
+				{audioSpots.map((spot, i) => {
+					return <SoundsSpot spot={spot} key={`${spot.file}-${i}`} ref={(element) => (allSpots.current[i] = { element, spot })} />;
+				})}
+			</group>
+		</Suspense>
 	);
 };
 

@@ -8,7 +8,7 @@ import AppContext from "../../context/AppContext";
 import Character_JRM from "../models/Character_JRM";
 import Map from "./Map";
 import Floor from "./Floor";
-import Sounds from "../Sounds/Sounds";
+const Sounds = lazy(() => import("../Sounds/Sounds"));
 const Lights = lazy(() => import("./Lights"));
 const ClickTarget = lazy(() => import("./ClickTarget"));
 
@@ -101,7 +101,7 @@ const ExperienceWorld = () => {
 					</Ecctrl>
 				</KeyboardControls>
 
-				<directionalLight position={[5, 0, 1]} intensity={1.5} target={ref.current} name="followLight" />
+				<directionalLight position={[5, 0, 1]} intensity={1.5} target={ref?.current} name="followLight" />
 				<Floor />
 				<Map />
 			</Physics>

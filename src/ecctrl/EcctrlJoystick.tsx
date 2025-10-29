@@ -59,8 +59,6 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 	// Touch move function
 	const onTouchMove = useCallback(
 		(e: TouchEvent) => {
-			if (!e) return;
-			
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			const touch1 = e.targetTouches[0];
@@ -73,7 +71,8 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 			joystickAng = touch1MovementVec2.angle();
 			joystickMovementVec2.set(joystickDis * Math.cos(joystickAng), joystickDis * Math.sin(joystickAng));
 			const runState = joystickDis > joystickMaxDis * (props.joystickRunSensitivity ?? 0.9);
-
+			
+			console.log('api', {api});
 			// Apply animations
 			api.start({
 				topRotationX: -joystickMovementVec2.y / joystickHalfHeight,
