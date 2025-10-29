@@ -59,10 +59,11 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 	// Touch move function
 	const onTouchMove = useCallback(
 		(e: TouchEvent) => {
+			if (!e) return;
+			
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			const touch1 = e.targetTouches[0];
-			console.log('on touch move', e);
 
 			const touch1MovementX = touch1.pageX - joystickCenterX;
 			const touch1MovementY = -(touch1.pageY - joystickCenterY);

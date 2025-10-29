@@ -10,11 +10,15 @@ import Modal from "../pages/Modal";
 import Keys from "./Menus/Keys";
 
 const EcctrlJoystickControls = ({ show }) => {
-	return <>{show && <EcctrlJoystick joystickRunSensitivity={0.2} buttonNumber={1} />}</>;
+	if (!show) return;
+	return <EcctrlJoystick joystickRunSensitivity={0.2} buttonNumber={1} />;
 };
 
 const Game = () => {
 	const [isTouchScreen, setIsTouchScreen] = useState(false);
+	const {
+		data: { start },
+	} = useContext(AppContext);
 
 	useEffect(() => {
 		// Check if using a touch control device, show/hide joystick
@@ -23,10 +27,8 @@ const Game = () => {
 		} else {
 			setIsTouchScreen(false);
 		}
-	}, []);
-	const {
-		data: { start },
-	} = useContext(AppContext);
+	}, [start]);
+
 	return (
 		<div className="game-wrapper">
 			{/* <Leva collapsed /> */}
