@@ -71,8 +71,7 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 			joystickAng = touch1MovementVec2.angle();
 			joystickMovementVec2.set(joystickDis * Math.cos(joystickAng), joystickDis * Math.sin(joystickAng));
 			const runState = joystickDis > joystickMaxDis * (props.joystickRunSensitivity ?? 0.9);
-			
-			console.log('api', {api});
+
 			// Apply animations
 			api.start({
 				topRotationX: -joystickMovementVec2.y / joystickHalfHeight,
@@ -149,10 +148,6 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 	const buttonLargeBaseGeo = useMemo(() => new THREE.CylinderGeometry(1.1, 1, 0.3, 16), []);
 	const buttonSmallBaseGeo = useMemo(() => new THREE.CylinderGeometry(0.9, 0.8, 0.3, 16), []);
 	const buttonTop1Geo = useMemo(() => new THREE.CylinderGeometry(0.9, 0.9, 0.5, 16), []);
-	const buttonTop2Geo = useMemo(() => new THREE.CylinderGeometry(0.9, 0.9, 0.5, 16), []);
-	const buttonTop3Geo = useMemo(() => new THREE.CylinderGeometry(0.7, 0.7, 0.5, 16), []);
-	const buttonTop4Geo = useMemo(() => new THREE.CylinderGeometry(0.7, 0.7, 0.5, 16), []);
-	const buttonTop5Geo = useMemo(() => new THREE.CylinderGeometry(0.7, 0.7, 0.5, 16), []);
 
 	const matcap_texture = useLoader(THREE.TextureLoader, "/assets/matcap_1.png");
 
@@ -161,11 +156,7 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 	 */
 	const buttonBaseMaterial = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.3 }), []);
 	const buttonTop1Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.8 }), []);
-	const buttonTop2Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.5 }), []);
-	const buttonTop3Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.5 }), []);
-	const buttonTop4Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.5 }), []);
-	const buttonTop5Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.5 }), []);
-
+	
 	const buttonDiv: HTMLDivElement = document.querySelector("#ecctrl-button");
 
 	/**
@@ -174,14 +165,6 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 	const [springs, api] = useSpring(() => ({
 		buttonTop1BaseScaleY: 1,
 		buttonTop1BaseScaleXAndZ: 1,
-		buttonTop2BaseScaleY: 1,
-		buttonTop2BaseScaleXAndZ: 1,
-		buttonTop3BaseScaleY: 1,
-		buttonTop3BaseScaleXAndZ: 1,
-		buttonTop4BaseScaleY: 1,
-		buttonTop4BaseScaleXAndZ: 1,
-		buttonTop5BaseScaleY: 1,
-		buttonTop5BaseScaleXAndZ: 1,
 		config: {
 			tension: 600,
 		},
@@ -191,10 +174,6 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 	 * Button store setup
 	 */
 	const pressButton1 = useJoystickControls((state) => state.pressButton1);
-	const pressButton2 = useJoystickControls((state) => state.pressButton2);
-	const pressButton3 = useJoystickControls((state) => state.pressButton3);
-	const pressButton4 = useJoystickControls((state) => state.pressButton4);
-	const pressButton5 = useJoystickControls((state) => state.pressButton5);
 	const releaseAllButtons = useJoystickControls((state) => state.releaseAllButtons);
 
 	// Pointer down function
@@ -205,34 +184,6 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 				api.start({
 					buttonTop1BaseScaleY: 0.5,
 					buttonTop1BaseScaleXAndZ: 1.15,
-				});
-				break;
-			case 2:
-				pressButton2();
-				api.start({
-					buttonTop2BaseScaleY: 0.5,
-					buttonTop2BaseScaleXAndZ: 1.15,
-				});
-				break;
-			case 3:
-				pressButton3();
-				api.start({
-					buttonTop3BaseScaleY: 0.5,
-					buttonTop3BaseScaleXAndZ: 1.15,
-				});
-				break;
-			case 4:
-				pressButton4();
-				api.start({
-					buttonTop4BaseScaleY: 0.5,
-					buttonTop4BaseScaleXAndZ: 1.15,
-				});
-				break;
-			case 5:
-				pressButton5();
-				api.start({
-					buttonTop5BaseScaleY: 0.5,
-					buttonTop5BaseScaleXAndZ: 1.15,
 				});
 				break;
 			default:
@@ -246,14 +197,7 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 		api.start({
 			buttonTop1BaseScaleY: 1,
 			buttonTop1BaseScaleXAndZ: 1,
-			buttonTop2BaseScaleY: 1,
-			buttonTop2BaseScaleXAndZ: 1,
-			buttonTop3BaseScaleY: 1,
-			buttonTop3BaseScaleXAndZ: 1,
-			buttonTop4BaseScaleY: 1,
-			buttonTop4BaseScaleXAndZ: 1,
-			buttonTop5BaseScaleY: 1,
-			buttonTop5BaseScaleXAndZ: 1,
+			
 		});
 	};
 
@@ -277,54 +221,6 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 					position={props.buttonGroup1Position || (buttonNumber === 1 ? [0, 0, 0] : [2, 1, 0])}>
 					<mesh geometry={buttonLargeBaseGeo} material={buttonBaseMaterial} {...props.buttonLargeBaseProps} onPointerDown={() => onPointerDown(1)} />
 					<mesh geometry={buttonTop1Geo} material={buttonTop1Material} position={[0, -0.3, 0]} {...props.buttonTop1Props} />
-				</animated.group>
-			)}
-			{/* Button 2 */}
-			{buttonNumber > 1 && (
-				<animated.group
-					scale-x={springs.buttonTop2BaseScaleXAndZ}
-					scale-y={springs.buttonTop2BaseScaleY}
-					scale-z={springs.buttonTop2BaseScaleXAndZ}
-					rotation={[-Math.PI / 2, 0, 0]}
-					position={props.buttonGroup2Position || [0.5, -1.3, 0]}>
-					<mesh geometry={buttonLargeBaseGeo} material={buttonBaseMaterial} {...props.buttonLargeBaseProps} onPointerDown={() => onPointerDown(2)} />
-					<mesh geometry={buttonTop2Geo} material={buttonTop2Material} position={[0, -0.3, 0]} {...props.buttonTop2Props} />
-				</animated.group>
-			)}
-			{/* Button 3 */}
-			{buttonNumber > 2 && (
-				<animated.group
-					scale-x={springs.buttonTop3BaseScaleXAndZ}
-					scale-y={springs.buttonTop3BaseScaleY}
-					scale-z={springs.buttonTop3BaseScaleXAndZ}
-					rotation={[-Math.PI / 2, 0, 0]}
-					position={props.buttonGroup3Position || [-1, 1, 0]}>
-					<mesh geometry={buttonSmallBaseGeo} material={buttonBaseMaterial} {...props.buttonSmallBaseProps} onPointerDown={() => onPointerDown(3)} />
-					<mesh geometry={buttonTop3Geo} material={buttonTop3Material} position={[0, -0.3, 0]} {...props.buttonTop3Props} />
-				</animated.group>
-			)}
-			{/* Button 4 */}
-			{buttonNumber > 3 && (
-				<animated.group
-					scale-x={springs.buttonTop4BaseScaleXAndZ}
-					scale-y={springs.buttonTop4BaseScaleY}
-					scale-z={springs.buttonTop4BaseScaleXAndZ}
-					rotation={[-Math.PI / 2, 0, 0]}
-					position={props.buttonGroup4Position || [-2, -1.3, 0]}>
-					<mesh geometry={buttonSmallBaseGeo} material={buttonBaseMaterial} {...props.buttonSmallBaseProps} onPointerDown={() => onPointerDown(4)} />
-					<mesh geometry={buttonTop4Geo} material={buttonTop4Material} position={[0, -0.3, 0]} {...props.buttonTop4Props} />
-				</animated.group>
-			)}
-			{/* Button 5 */}
-			{buttonNumber > 4 && (
-				<animated.group
-					scale-x={springs.buttonTop5BaseScaleXAndZ}
-					scale-y={springs.buttonTop5BaseScaleY}
-					scale-z={springs.buttonTop5BaseScaleXAndZ}
-					rotation={[-Math.PI / 2, 0, 0]}
-					position={props.buttonGroup5Position || [0.4, 2.9, 0]}>
-					<mesh geometry={buttonSmallBaseGeo} material={buttonBaseMaterial} {...props.buttonSmallBaseProps} onPointerDown={() => onPointerDown(5)} />
-					<mesh geometry={buttonTop5Geo} material={buttonTop5Material} position={[0, -0.3, 0]} {...props.buttonTop5Props} />
 				</animated.group>
 			)}
 		</Suspense>
@@ -417,15 +313,7 @@ export type EcctrlJoystickProps = {
 	buttonCamZoom?: number;
 	buttonCamPosition?: [x: number, y: number, z: number];
 	buttonGroup1Position?: [x: number, y: number, z: number];
-	buttonGroup2Position?: [x: number, y: number, z: number];
-	buttonGroup3Position?: [x: number, y: number, z: number];
-	buttonGroup4Position?: [x: number, y: number, z: number];
-	buttonGroup5Position?: [x: number, y: number, z: number];
 	buttonLargeBaseProps?: ThreeElements["mesh"];
 	buttonSmallBaseProps?: ThreeElements["mesh"];
 	buttonTop1Props?: ThreeElements["mesh"];
-	buttonTop2Props?: ThreeElements["mesh"];
-	buttonTop3Props?: ThreeElements["mesh"];
-	buttonTop4Props?: ThreeElements["mesh"];
-	buttonTop5Props?: ThreeElements["mesh"];
 };

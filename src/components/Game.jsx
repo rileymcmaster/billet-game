@@ -23,7 +23,9 @@ const Game = () => {
 	useEffect(() => {
 		// Check if using a touch control device, show/hide joystick
 		if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
-			setIsTouchScreen(true);
+			setTimeout(() => {
+				setIsTouchScreen(true);
+			}, 1000)
 		} else {
 			setIsTouchScreen(false);
 		}
