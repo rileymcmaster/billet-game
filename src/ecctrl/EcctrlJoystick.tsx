@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { Canvas, useLoader, type ThreeElements } from "@react-three/fiber";
-import React, { useEffect, useState, forwardRef, useMemo, type ReactNode, useCallback, Suspense } from "react";
+import React, { useEffect, useState, forwardRef, useMemo, type ReactNode, useCallback, Suspense, useRef } from "react";
 import { useSpring, animated } from "@react-spring/three";
 import { useJoystickControls } from "./stores/useJoystickControls";
 
@@ -8,18 +8,18 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 	/**
 	 * Preset values/components
 	 */
-	let joystickCenterX: number = 0;
-	let joystickCenterY: number = 0;
-	let joystickHalfWidth: number = 0;
-	let joystickHalfHeight: number = 0;
-	let joystickMaxDis: number = 0;
+	const joystickHalfWidthRef = useRef(0);
+	const joystickHalfHeightRef = useRef(0);
+	const joystickMaxDisRef = useRef(0);
+	const joystickCenterXRef = useRef(0);
+	const joystickCenterYRef = useRef(0);
 	let joystickDis: number = 0;
 	let joystickAng: number = 0;
 	const touch1MovementVec2 = useMemo(() => new THREE.Vector2(), []);
 	const joystickMovementVec2 = useMemo(() => new THREE.Vector2(), []);
 
 	const [windowSize, setWindowSize] = useState({ innerHeight, innerWidth });
-	const joystickDiv: HTMLDivElement = document.querySelector("#ecctrl-joystick");
+	const joystickDiv: null | HTMLDivElement = document.querySelector("#ecctrl-joystick");
 
 	/**
 	 * Animation preset
@@ -40,7 +40,6 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 	const joystickBaseGeo = useMemo(() => new THREE.CylinderGeometry(2.3, 2.1, 0.3, 16), []);
 	const joystickStickGeo = useMemo(() => new THREE.CylinderGeometry(0.3, 0.3, 3, 6), []);
 	const joystickHandleGeo = useMemo(() => new THREE.SphereGeometry(1.4, 8, 8), []);
-
 	const matcap_texture = useLoader(THREE.TextureLoader, "/assets/matcap_1.png");
 
 	/**
@@ -49,6 +48,7 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 	const joystickBaseMaterial = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.3 }), []);
 	const joystickStickMaterial = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, opacity: 0.3 }), []);
 	const joystickHandleMaterial = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, opacity: 0.7 }), []);
+
 
 	/**
 	 * Joystick store setup
@@ -63,19 +63,19 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 			e.stopImmediatePropagation();
 			const touch1 = e.targetTouches[0];
 
-			const touch1MovementX = touch1.pageX - joystickCenterX;
-			const touch1MovementY = -(touch1.pageY - joystickCenterY);
+			const touch1MovementX = touch1.pageX - joystickCenterXRef.current;
+			const touch1MovementY = -(touch1.pageY - joystickCenterYRef.current);
 			touch1MovementVec2.set(touch1MovementX, touch1MovementY);
 
-			joystickDis = Math.min(Math.sqrt(Math.pow(touch1MovementX, 2) + Math.pow(touch1MovementY, 2)), joystickMaxDis);
+			joystickDis = Math.min(Math.sqrt(Math.pow(touch1MovementX, 2) + Math.pow(touch1MovementY, 2)), joystickMaxDisRef.current);
 			joystickAng = touch1MovementVec2.angle();
 			joystickMovementVec2.set(joystickDis * Math.cos(joystickAng), joystickDis * Math.sin(joystickAng));
-			const runState = joystickDis > joystickMaxDis * (props.joystickRunSensitivity ?? 0.9);
+			const runState = joystickDis > joystickMaxDisRef.current * (props.joystickRunSensitivity ?? 0.9);
 
 			// Apply animations
 			api.start({
-				topRotationX: -joystickMovementVec2.y / joystickHalfHeight,
-				topRotationY: joystickMovementVec2.x / joystickHalfWidth,
+				topRotationX: -joystickMovementVec2.y / joystickHalfHeightRef.current,
+				topRotationY: joystickMovementVec2.x / joystickHalfWidthRef.current,
 				basePositionX: joystickMovementVec2.x * 0.002,
 				basePositionY: joystickMovementVec2.y * 0.002,
 			});
@@ -102,29 +102,34 @@ const JoystickComponents = (props: EcctrlJoystickProps) => {
 
 	// Reset window size function
 	const onWindowResize = () => {
-		setWindowSize({ innerHeight: window.innerHeight, innerWidth: window.innerWidth });
+		setWindowSize({
+			innerHeight: window.innerHeight,
+			innerWidth: window.innerWidth,
+		});
 	};
 
 	useEffect(() => {
+		if (!joystickDiv) return;
+
 		const joystickPositionX = joystickDiv.getBoundingClientRect().x;
 		const joystickPositionY = joystickDiv.getBoundingClientRect().y;
-		joystickHalfWidth = joystickDiv.getBoundingClientRect().width / 2;
-		joystickHalfHeight = joystickDiv.getBoundingClientRect().height / 2;
+		joystickHalfWidthRef.current = joystickDiv.getBoundingClientRect().width / 2;
+		joystickHalfHeightRef.current = joystickDiv.getBoundingClientRect().height / 2;
 
-		joystickMaxDis = joystickHalfWidth * 0.65;
+		joystickMaxDisRef.current = joystickHalfWidthRef.current * 0.65;
 
-		joystickCenterX = joystickPositionX + joystickHalfWidth;
-		joystickCenterY = joystickPositionY + joystickHalfHeight;
+		joystickCenterXRef.current = joystickPositionX + joystickHalfWidthRef.current;
+		joystickCenterYRef.current = joystickPositionY + joystickHalfHeightRef.current;
 
 		joystickDiv.addEventListener("touchmove", onTouchMove, { passive: false });
 		joystickDiv.addEventListener("touchend", onTouchEnd);
 
-		window.visualViewport.addEventListener("resize", onWindowResize);
+		window.visualViewport?.addEventListener("resize", onWindowResize);
 
 		return () => {
 			joystickDiv.removeEventListener("touchmove", onTouchMove);
 			joystickDiv.removeEventListener("touchend", onTouchEnd);
-			window.visualViewport.removeEventListener("resize", onWindowResize);
+			window.visualViewport?.removeEventListener("resize", onWindowResize);
 		};
 	});
 
@@ -148,16 +153,15 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 	const buttonLargeBaseGeo = useMemo(() => new THREE.CylinderGeometry(1.1, 1, 0.3, 16), []);
 	const buttonSmallBaseGeo = useMemo(() => new THREE.CylinderGeometry(0.9, 0.8, 0.3, 16), []);
 	const buttonTop1Geo = useMemo(() => new THREE.CylinderGeometry(0.9, 0.9, 0.5, 16), []);
-
 	const matcap_texture = useLoader(THREE.TextureLoader, "/assets/matcap_1.png");
 
 	/**
 	 * Button component materials
 	 */
 	const buttonBaseMaterial = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.3 }), []);
-	const buttonTop1Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.8 }), []);
-	
-	const buttonDiv: HTMLDivElement = document.querySelector("#ecctrl-button");
+	const buttonTop1Material = useMemo(() => new THREE.MeshMatcapMaterial({ matcap: matcap_texture, transparent: true, opacity: 0.5 }), []);
+
+	const buttonDiv: null | HTMLDivElement = document.querySelector("#ecctrl-button");
 
 	/**
 	 * Animation preset
@@ -186,6 +190,7 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 					buttonTop1BaseScaleXAndZ: 1.15,
 				});
 				break;
+			
 			default:
 				break;
 		}
@@ -197,11 +202,19 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 		api.start({
 			buttonTop1BaseScaleY: 1,
 			buttonTop1BaseScaleXAndZ: 1,
-			
+			buttonTop2BaseScaleY: 1,
+			buttonTop2BaseScaleXAndZ: 1,
+			buttonTop3BaseScaleY: 1,
+			buttonTop3BaseScaleXAndZ: 1,
+			buttonTop4BaseScaleY: 1,
+			buttonTop4BaseScaleXAndZ: 1,
+			buttonTop5BaseScaleY: 1,
+			buttonTop5BaseScaleXAndZ: 1,
 		});
 	};
 
 	useEffect(() => {
+		if (!buttonDiv) return;
 		buttonDiv.addEventListener("pointerup", onPointerUp);
 
 		return () => {
@@ -223,6 +236,7 @@ const ButtonComponents = ({ buttonNumber = 1, ...props }: EcctrlJoystickProps) =
 					<mesh geometry={buttonTop1Geo} material={buttonTop1Material} position={[0, -0.3, 0]} {...props.buttonTop1Props} />
 				</animated.group>
 			)}
+			
 		</Suspense>
 	);
 };
