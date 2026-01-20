@@ -1,16 +1,17 @@
 import React, { Suspense } from "react";
 import { links } from "../data";
 import { Link } from "react-router-dom";
+import VideoList from "../components/VideoList";
 
 const HomePage = () => {
 	return (
 		<Suspense>
-			<section>
+			<section className="homepage">
 				<h1>Billet</h1>
-				<h3>
+				<h3 className="highlight">
 					<Link to="/game">Play the "All Eyes" interactive music video</Link>
 				</h3>
-				<h2>The debut album Debris is out now</h2>
+				<h2>Montreal synth punk</h2>
 				<div className="link-wrapper">
 					<Link to="/bio" discover="none">
 						•bio•
@@ -22,20 +23,12 @@ const HomePage = () => {
 					))}
 				</div>
 				<p className="small-text">
-					<a href="mailto:billetmusic@gmail.com">billetmusic@gmail.com</a> 2025
+					<a href="mailto:billetmusic@gmail.com">billetmusic@gmail.com</a> 2026
 				</p>
 
-				<div className="iframe-wrapper">
-					<iframe
-						width="560"
-						height="315"
-						src="https://www.youtube.com/embed/m_gxWheaDyE?si=R8C35a9y3g0AqRCB"
-						title="YouTube video player"
-						frameBorder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						referrerPolicy="strict-origin-when-cross-origin"
-						allowFullScreen></iframe>
-				</div>
+				<section className="videos">
+				<VideoList />
+					</section>
 			</section>
 		</Suspense>
 	);
