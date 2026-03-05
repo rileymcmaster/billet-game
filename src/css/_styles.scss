@@ -9,7 +9,7 @@
 }
 
 :root {
-	font-family: doner, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: $default-font-family;
 	line-height: 1.5;
 	font-weight: 400;
 
@@ -100,7 +100,8 @@ h2 {
 
 .small-text {
 	font-size: 0.5rem;
-
+	font-family: $default-font-family;
+	
 	a {
 		color: $color-moss;
 		&:hover,

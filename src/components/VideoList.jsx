@@ -8,12 +8,17 @@ const cctvVidSrc = "https://www.youtube.com/embed/peogIPYJb3I?si=b_5UiqGcuJv6ZH8
 const allEyesVidSrc = "https://www.youtube.com/embed/yHOF9k8JdWA?si=hIYNG6NuhpwlIP0t";
 const depressionVidSrc = "https://www.youtube.com/embed/MBveYe6H38c?si=awHj61YzX47Ipe6C";
 const stopgapVidSrc = "https://www.youtube.com/embed/4aYycMgZsmE?si=xqrrFBenmSUeM7au"
+const waveVidSrc = "https://www.youtube.com/embed/VOW0T_XP4i4?si=HZY128u1ALMPzPGX";
 
 const VideoList = () => {
 	return (
 		<>
 			<h3>videos</h3>
 			<ul className="video-list">
+				<li>
+					<VideoEmbed src={waveVidSrc} />
+					<p>Wave</p><span className="small-text">2026</span>
+				</li>
 				<li>
 					<VideoEmbed src={fortunesVidSrc} />
 					<p>Fortunes</p><span className="small-text">2025</span>

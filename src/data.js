@@ -24,7 +24,7 @@ export const biography = [
 
 	"It is Jay Reatard songs played through the equipment of Suicide, Ty Segall covering Devo, eggpunk meets an existential threat.",
 
-	"Billet released its debut album, Debris, at the end of 2024. More recordings are underway in 2025 with a single slated for release in the fall.",
+	"Billet released its debut album, Debris, at the end of 2024. More recordings are underway in 2026 with the single \"Wave\" released in March and a full album expected by summer.",
 
 	"For fans of: Jay Reatard, Ty Segall, Osees, Suicide, Powerplant, Devo, Smirk",
 ];

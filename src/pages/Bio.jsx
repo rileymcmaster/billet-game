@@ -35,6 +35,9 @@ const Bio = () => {
 						<h3>releases</h3>
 						<ul>
 							<li>
+								2026 - Wave <sup className="em">single</sup>
+							</li>
+							<li>
 								2024 - Debris <sup className="em">LP</sup>
 							</li>
 							<li>
@@ -50,8 +53,8 @@ const Bio = () => {
 					</div>
 				</div>
 				<VideoList />
-				
 			</section>
+				
 		</Suspense>
 	);
 };
