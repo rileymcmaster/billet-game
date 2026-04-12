@@ -18,13 +18,7 @@ export const bioLinks = [
 export const biography = [
 	"Billet is the solo project of Montreal's Riley McMaster, singer and guitarist from garage-rock band Monsoon Moon (2017-2023). Fronting Monsoon Moon, Riley played 30+ shows across Canada: in festivals including Big Winter Classic (Calgary) and Music Waste (Vancouver) and opening for touring acts such as Shannon Shaw and Remember Sports. ",
 
-	"Billet is stick-in-your-head melodies, groove-infested, hook-laced and cathartic. Songs filled to the brim with paranoia and anxiety about technology, personal connection and searching for any semblance of reality. ",
+	"Psychedelic pop songs are chewed up into a mess of analog synths and drum machines and spit out on the dirty sidewalk. Guitars and synths are distorted into oblivion while pounding drums drive the intense pace. Fear and paranoia are the backdrop for Riley's search for humanity.",
 
-	"The tension between man and technology is elevated in the live show as the rhythm section is executed by analog drum machines and synths. The unflinching robotic rhythms counter Riley's plea for humanity as he sings and wails on guitar, free of restraint. ",
-
-	"It is Jay Reatard songs played through the equipment of Suicide, Ty Segall covering Devo, eggpunk meets an existential threat.",
-
-	"Billet released its debut album, Debris, at the end of 2024. More recordings are underway in 2026 with the single \"Wave\" released in March and a full album expected by summer.",
-
-	"For fans of: Jay Reatard, Ty Segall, Osees, Suicide, Powerplant, Devo, Smirk",
+	"Billet released the self-produced album Debris in 2024 and has been releasing a string of videos and singles for a new album due out later this year.",
 ];
