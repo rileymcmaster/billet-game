@@ -14,7 +14,6 @@
 		text-decoration: overline;
 	}
 
-
 	&__header {
 		@media (min-width: $screen-medium) {
 			display: grid;
@@ -90,6 +89,10 @@
 		}
 		&__releases {
 			grid-area: releases;
+
+			li {
+				font-family: lemon;
+			}
 		}
 		&__image-wrapper {
 			grid-area: image;
@@ -110,7 +113,6 @@
 .video-list {
 	margin-block-start: 1rem;
 	display: grid;
-	
 
 	@media (min-width: $screen-medium) {
 		grid-template-columns: minmax(max-content, min(70vw, 800px)) 1fr;
@@ -131,11 +133,9 @@
 			font-family: lemon-wide;
 			font-size: 1.5em;
 			@media (min-width: $screen-medium) {
-					font-size: 1em;
-
-				}
+				font-size: 1em;
+			}
 		}
-
 	}
 
 	a {
