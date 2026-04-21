@@ -35,6 +35,9 @@ const Bio = () => {
 						<h3>releases</h3>
 						<ul>
 							<li>
+								2026 - Spill The Rest <sup className="em">single</sup>
+							</li>
+							<li>
 								2026 - Wave <sup className="em">single</sup>
 							</li>
 							<li>

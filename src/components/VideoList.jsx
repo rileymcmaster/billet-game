@@ -2,53 +2,71 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import VideoEmbed from "../components/VideoEmbed";
-const sosVidSrc = "https://www.youtube.com/embed/gVCaYuzIoCM?si=qHjP2egGF7-s94aN";
-const fortunesVidSrc = "https://www.youtube.com/embed/m_gxWheaDyE?si=R8C35a9y3g0AqRCB";
-const cctvVidSrc = "https://www.youtube.com/embed/peogIPYJb3I?si=b_5UiqGcuJv6ZH8W";
-const allEyesVidSrc = "https://www.youtube.com/embed/yHOF9k8JdWA?si=hIYNG6NuhpwlIP0t";
-const depressionVidSrc = "https://www.youtube.com/embed/MBveYe6H38c?si=awHj61YzX47Ipe6C";
-const stopgapVidSrc = "https://www.youtube.com/embed/4aYycMgZsmE?si=xqrrFBenmSUeM7au"
-const waveVidSrc = "https://www.youtube.com/embed/VOW0T_XP4i4?si=HZY128u1ALMPzPGX";
+
+const videos = [
+	{
+		title: "Spill The Rest",
+		embed: "https://www.youtube.com/embed/d23DafFU1M8?si=ZSbLubHqUQ9R3fgt",
+		year: "2026",
+		link: null,
+	},
+	{
+		title: "Wave",
+		embed: "https://www.youtube.com/embed/VOW0T_XP4i4?si=HZY128u1ALMPzPGX",
+		year: "2026",
+		link: null,
+	},
+	{
+		title: "Fortunes",
+		embed: "https://www.youtube.com/embed/m_gxWheaDyE?si=R8C35a9y3g0AqRCB",
+		year: "2025",
+		link: null,
+	},
+	{
+		title: "CCTV Le Quartier",
+		embed: "https://www.youtube.com/embed/peogIPYJb3I?si=b_5UiqGcuJv6ZH8W",
+		year: "2025",
+		link: null,
+	},
+	{
+		title: "All Eyes",
+		embed: "https://www.youtube.com/embed/yHOF9k8JdWA?si=hIYNG6NuhpwlIP0t",
+		year: "2025",
+		link: { url: "/game", text: "Interactive music video, play it here" },
+	},
+	{
+		title: "Same Old Story",
+		embed: "https://www.youtube.com/embed/gVCaYuzIoCM?si=qHjP2egGF7-s94aN",
+		year: "2024",
+		link: null,
+	},
+	{
+		title: "Stopgap",
+		embed: "https://www.youtube.com/embed/4aYycMgZsmE?si=xqrrFBenmSUeM7au",
+		year: "2020",
+		link: null,
+	},
+	{
+		title: "Depression",
+		embed: "https://www.youtube.com/embed/MBveYe6H38c?si=awHj61YzX47Ipe6C",
+		year: "2020",
+		link: null,
+	},
+];
 
 const VideoList = () => {
 	return (
 		<>
 			<h3>videos</h3>
 			<ul className="video-list">
-				<li>
-					<VideoEmbed src={waveVidSrc} />
-					<p>Wave</p><span className="small-text">2026</span>
-				</li>
-				<li>
-					<VideoEmbed src={fortunesVidSrc} />
-					<p>Fortunes</p><span className="small-text">2025</span>
-				</li>
-				<li>
-					<VideoEmbed src={cctvVidSrc} />
-					<p>CCTV le quartier</p>
-					<span className="small-text">2025</span>
-				</li>
-				<li>
-					<VideoEmbed src={allEyesVidSrc} />
-					<p>All Eyes</p>
-					<span className="small-text">2025</span>
-					<Link to="/game">Interactive music video, play it here</Link>
-				</li>
-				<li>
-					<VideoEmbed src={sosVidSrc} />
-					<p>Same Old Story</p>
-					<span className="small-text">2024</span>
-				</li>
-				<li>
-					<VideoEmbed src={stopgapVidSrc} />
-					<p>Stopgap</p>
-					<span className="small-text">2025</span>
-				</li>
-				<li>
-					<VideoEmbed src={depressionVidSrc} />
-					<p>Depression</p>
-					<span className="small-text">2020</span>
-				</li>
+				{videos.map(({ title, embed, year, link }) => (
+					<li key={title}>
+						<VideoEmbed src={embed} />
+						<p>{title}</p>
+						<span className="small-text">{year}</span>
+						{link && <Link to={link.url}>{link.text}</Link>}
+					</li>
+				))}
 			</ul>
 		</>
 	);

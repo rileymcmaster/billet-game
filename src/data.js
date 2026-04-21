@@ -20,5 +20,5 @@ export const biography = [
 
 	"Psychedelic pop songs are chewed up into a mess of analog synths and drum machines and spit out on the dirty sidewalk. Guitars and synths are distorted into oblivion while pounding drums drive the intense pace. Fear and paranoia are the backdrop for Riley's search for humanity.",
 
-	"Billet released the self-produced album Debris in 2024 and has been releasing a string of videos and singles for a new album due out later this year.",
+	"Billet released the self-produced album Debris in 2024 and has been releasing a string of videos and singles for a new album due out late 2026.",
 ];

@@ -5,7 +5,7 @@ const VideoEmbed = ({ src }) => {
 		<div className="iframe-wrapper">
 			<iframe
 				width="560"
-				height="315"
+				height="420"
 				src={src}
 				title="YouTube video player"
 				frameBorder="0"
