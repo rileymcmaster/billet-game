@@ -80,11 +80,10 @@
 					font-size: 0.5em;
 				}
 
-				&:last-of-type {
-					margin-block-start: 1rem;
-					padding-block-start: 0.5rem;
-					border-top: 1px dotted $color-moss;
-				}
+			}
+			hr {
+				margin-block-start: 1rem;
+				border: 1px dotted $color-moss;
 			}
 		}
 		&__releases {

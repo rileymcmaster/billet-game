@@ -26,9 +26,7 @@ const Bio = () => {
 				<div className="bio__details">
 					<div className="bio__details__bio">
 						<h3>bio</h3>
-						{biography.map((text, i) => (
-							<p key={i}>{text}</p>
-						))}
+						<div dangerouslySetInnerHTML={{__html: biography}}></div>
 					</div>
 
 					<div className="bio__details__releases">

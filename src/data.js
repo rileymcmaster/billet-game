@@ -15,10 +15,10 @@ export const bioLinks = [
 	{ title: "youtube", slug: "youtube", href: "https://www.youtube.com/@billetgohome" },
 ];
 
-export const biography = [
-	"Billet is the solo project of Montreal's Riley McMaster, singer and guitarist from garage-rock band Monsoon Moon (2017-2023). Fronting Monsoon Moon, Riley played 30+ shows across Canada: in festivals including Big Winter Classic (Calgary) and Music Waste (Vancouver) and opening for touring acts such as Shannon Shaw and Remember Sports. ",
-
-	"Psychedelic pop songs are chewed up into a mess of analog synths and drum machines and spit out on the dirty sidewalk. Guitars and synths are distorted into oblivion while pounding drums drive the intense pace. Fear and paranoia are the backdrop for Riley's search for humanity.",
-
-	"Billet released the self-produced album Debris in 2024 and has been releasing a string of videos and singles for a new album due out late 2026.",
-];
+export const biography = `
+<p>Billet is psychedelic pop songs chewed up into a mess of analog synths and drum machines and spit out on the dirty sidewalk. Based out of Montreal, Billet is the electronic-rock solo-project of Riley McMaster. Guitars and synths are distorted into oblivion while pounding drums drive the intense pace. </p>
+<p>Live, Billet keeps the energy high. Blown out, glitchy guitar riffs and searing synths hook the audience in an instant. Cathartic bangers about searching for humanity in the wasteland that is our modern technologic age.</p>
+<p>While fronting the garage-rock duo Monsoon Moon (2017-2023), Riley played over 30 shows across Canada: in festivals including Big Winter Classic (Calgary) and Music Waste (Vancouver) and opening for touring acts such as Shannon Shaw, Remember Sports and Chew.</p>
+<hr />
+<p>Billet is The Music Machine meets Depeche Mode. <br>Devo covering Jay Reatard. </p>
+`;
