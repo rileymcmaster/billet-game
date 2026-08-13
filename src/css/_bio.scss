@@ -111,18 +111,20 @@
 
 .video-list {
 	margin-block-start: 1rem;
-	display: grid;
-
+	
 	@media (min-width: $screen-medium) {
+		display: grid;
 		grid-template-columns: minmax(max-content, min(70vw, 800px)) 1fr;
 		column-gap: 1rem;
 	}
 
 	li {
-		display: grid;
-		grid-template-columns: subgrid;
-		grid-column: 1 / -1;
-
+		@media (min-width: $screen-medium) {
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: 1 / -1;
+		}
+		
 		&:not(:last-of-type) {
 			margin-block-end: 2rem;
 		}
