@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Link } from "react-router-dom";
 
-const imageMain = "/assets/billet-headshot.webp";
+const imageMain = "/assets/billet-headshot-1.webp";
 import { bioLinks, biography } from "../data";
 import VideoList from "../components/VideoList";
 

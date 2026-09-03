@@ -13,22 +13,30 @@ const HomePage = () => {
 				</h3>
 				<h2>Montreal electronic rock</h2>
 				<div className="link-wrapper">
+					
 					<Link to="/bio" discover="none">
-						•bio•
+						bio
 					</Link>
-					{links.map(({ title, href }) => (
-						<a key={title} href={href}>
+					&nbsp;•&nbsp;
+					<a className="homepage__email" href="mailto:person@billetmusic.ca">
+						person@billetmusic.ca
+					</a>
+				</div>
+
+				<div className="link-wrapper">
+					{links.map(({ title, href }, i) => (
+						<p key={title} className="small-link">
+						<a  href={href}>
 							{title}
-						</a>
+							</a>
+							{i < links.length - 1 && " • "}
+						</p>
 					))}
 				</div>
-				<p className="small-text">
-					<a href="mailto:billetmusic@gmail.com">billetmusic@gmail.com</a> 2026
-				</p>
 
 				<section className="videos">
-				<VideoList />
-					</section>
+					<VideoList />
+				</section>
 			</section>
 		</Suspense>
 	);

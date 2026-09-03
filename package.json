@@ -19,7 +19,7 @@
 		"r3f-perf": "^7.2.3",
 		"sass": "^1.86.0",
 		"typescript": "^5.7.2",
-		"vite": "^5.4.11"
+		"vite": "^8.2.2"
 	},
 	"dependencies": {
 		"@react-spring/three": "^9.7.5",
@@ -30,7 +30,7 @@
 		"react": "^18",
 		"react-dom": "^18.0",
 		"react-responsive": "^10.0.1",
-		"react-router-dom": "6.15",
+		"react-router-dom": "^6.30.6",
 		"three": ">=0.170.0",
 		"three-stdlib": "^2.35.14",
 		"zustand": "^5.0.1"

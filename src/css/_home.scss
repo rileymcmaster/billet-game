@@ -1,6 +1,25 @@
+@use "variables" as *;
+
 .homepage {
 	padding-block-end: 100px;
 	section.videos {
 		margin-block-start: 50px;
+	}
+
+	&__email {
+		// display: inline-block;
+		// margin-block-start: 16px;
+		// font-size: .8em;
+		// background: $color-moss;
+		// color: $color-black;
+		// font-family: $headings-font-family;
+		// text-transform: uppercase;
+
+	// 	&:hover,
+	// 	&:focus-visible {
+	// 		color: $color-blue;
+	// 		background: transparent;
+		
+	// }
 	}
 }

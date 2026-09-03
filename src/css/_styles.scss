@@ -115,11 +115,35 @@ h2 {
 		}
 	}
 }
+.small-link {
+	font-family: $default-font-family;
+	font-size: 0.8rem;
+	
+	@media (min-width: $screen-medium) {
+		// font-size: 0.5rem;
+	}	
+
+	a {
+		// color: $color-moss;
+		&:hover,
+		&:focus-visible {
+			// color: $color-blue;
+			// background: transparent;
+		}
+	}
+}
+
 
 .link-wrapper {
 	display: flex;
 	max-width: 100%;
 	flex-wrap: wrap;
+	padding-inline-start: 10px;
+	margin-block-start: 20px;
+
+	& + & {
+		margin-block-start: 16px;
+	}
 }
 
 a {

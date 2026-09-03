@@ -89,7 +89,7 @@ const IntroPage = () => {
 									</button>
 								</div>
 								<p className="small-text">
-									<a href="mailto:billetmusic@gmail.com">billetmusic@gmail.com</a> <br /> 2025
+									<a href="mailto:person@billetmusic.ca">person@billetmusic.ca</a> <br /> 2025
 								</p>
 							</div>
 						</motion.div>
